@@ -4,30 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Raleway%7CRighteous" rel="stylesheet">
 
-        <link rel="stylesheet" href="assets/css/style.css">
-        <title>Math Jeopardy</title>
-    </head>
-    
-    <body>
-        <div id="game-board">
-            <!-- Game categories and point values -->
-        </div>
-        <div id="question">
-            <!-- Display question and answers here -->
-        </div>
-        <div id="timer">
-            <!-- Display timer countdown here -->
-        </div>
-        <div id="score">
-            <!-- Display player scores here -->
-        </div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway%7CRighteous" rel="stylesheet">
 
-    <script src="assets/js/script.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Math Jeopardy</title>
+</head>
+
+<body>
+    <div id="game-board">
+        <!-- Game categories and point values -->
+    </div>
+    <div id="question">
+        <!-- Display question and answers here -->
+    </div>
+    <div id="timer">
+        <!-- Display timer countdown here -->
+    </div>
+    <div id="score">
+        <!-- Display player scores here -->
+    </div>
+
+    <script>
+        // Define your questions and answers
+        const questions = [
+            { category: "Arithmetic", points: 100, question: "2 + 3", answer: 5 },
+            // Add more questions here
+        ];
+
+        // Initialize game state
+        let currentPlayer = 0;
+        let currentQuestion = null;
+        let score = [0, 0]; // Player scores
+
+        // Function to display the game board
+        function displayGameBoard() {
+            const gameBoard = document.getElementById("game-board");
+
+            // Create and display category buttons and point values
+            // Add event listeners to handle question selection
+        }
+
+        // Function to display a question
+        function displayQuestion(questionObj) {
+            const questionDiv = document.getElementById("question");
+
+            // Display question and answer choices
+            // Add event listener to check the answer when selected
+        }
+
+        // Function to start the timer
+        function startTimer() {
+            const timerDiv = document.getElementById("timer");
+            // Implement the countdown logic
+        }
+
+        // Function to check the answer
+        function checkAnswer(playerAnswer) {
+            if (playerAnswer === currentQuestion.answer) {
+                score[currentPlayer] += currentQuestion.points;
+            } else {
+                score[currentPlayer] -= currentQuestion.points;
+            }
+            // Update score display
+            // Move to the next player
+            // Clear currentQuestion and displayGameBoard
+        }
+
+        // Function to update score display
+        function updateScoreDisplay() {
+            const scoreDiv = document.getElementById("score");
+            // Update score display for both players
+        }
+
+        // Initialize the game
+        displayGameBoard();
+    </script>
 </body>
 
 </html>
