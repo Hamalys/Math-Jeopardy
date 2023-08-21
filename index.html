@@ -14,34 +14,54 @@
 </head>
 
 <body>
-    <div id="game-board">
-        <!-- Game categories and point values -->
-    </div>
-    <div id="question">
-        <!-- Display question and answers here -->
-    </div>
-    <div id="timer">
-        <!-- Display timer countdown here -->
-    </div>
-    <div id="score">
-        <!-- Display player scores here -->
-    </div>
+    <body>
+        <div id="game-board">
+            <!-- Game categories and point values will be displayed here -->
+        </div>
+        <div id="question-container">
+            <!-- This container is for displaying the question and answer choices -->
+            <div id="question">
+                Question: 2 + 3
+            </div>
+            <div id="answer-choices">
+                <button>Option 1: 5</button>
+                <button>Option 2: 7</button>
+                <button>Option 3: 4</button>
+                <button>Option 4: 8</button>
+            </div>
+        </div>
+        <div id="timer-container">
+            <!-- Timer display will be shown here -->
+            <div id="timer">
+                Time Left: 10 seconds
+            </div>
+        </div>
+        <div id="score-container">
+            <!-- Score display for both players -->
+            <div id="score">
+                Player 1: 100 points
+                <br>
+                Player 2: 75 points
+            </div>
+        </div>
+    
+    
 
     <script>
         // Define your questions and answers
-        const questions = [
+        let questions = [
             { category: "Arithmetic", points: 100, question: "2 + 3", answer: 5 },
-            // Add more questions here
+
         ];
 
         // Initialize game state
         let currentPlayer = 0;
         let currentQuestion = null;
-        let score = [0, 0]; // Player scores
+        let score = [0, 0]; 
 
         // Function to display the game board
         function displayGameBoard() {
-            const gameBoard = document.getElementById("game-board");
+            let gameBoard = document.getElementById("game-board");
 
             // Create and display category buttons and point values
             // Add event listeners to handle question selection
@@ -51,17 +71,7 @@
         function displayQuestion(questionObj) {
             const questionDiv = document.getElementById("question");
 
-            // Display question and answer choices
-            // Add event listener to check the answer when selected
-        }
-
-        // Function to start the timer
-        function startTimer() {
-            const timerDiv = document.getElementById("timer");
-            // Implement the countdown logic
-        }
-
-        // Function to check the answer
+            // 
         function checkAnswer(playerAnswer) {
             if (playerAnswer === currentQuestion.answer) {
                 score[currentPlayer] += currentQuestion.points;
