@@ -4,93 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway%7CRighteous" rel="stylesheet">
-
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Math Jeopardy</title>
 </head>
 
 <body>
-    <body>
-        <div id="game-board">
-            <!-- Game categories and point values will be displayed here -->
+    <div id="game-board">
+        <!-- Game categories and point values will be displayed here -->
+    </div>
+    <div id="question-container">
+        <!-- This container is for displaying the question and answer choices -->
+        <div id="question">
+            Question: 2 + 3
         </div>
-        <div id="question-container">
-            <!-- This container is for displaying the question and answer choices -->
-            <div id="question">
-                Question: 2 + 3
-            </div>
-            <div id="answer-choices">
-                <button>Option 1: 5</button>
-                <button>Option 2: 7</button>
-                <button>Option 3: 4</button>
-                <button>Option 4: 8</button>
-            </div>
+        <div id="answer-choices">
+            <button>Option 1: 5</button>
+            <button>Option 2: 7</button>
+            <button>Option 3: 4</button>
+            <button>Option 4: 8</button>
         </div>
-        <div id="timer-container">
-            <!-- Timer display will be shown here -->
-            <div id="timer">
-                Time Left: 10 seconds
-            </div>
+    </div>
+    <div id="timer-container">
+        <!-- Timer display will be shown here -->
+        <div id="timer">
+            Time Left: 10 seconds
         </div>
-        <div id="score-container">
-            <!-- Score display for both players -->
-            <div id="score">
-                Player 1: 100 points
-                <br>
-                Player 2: 75 points
-            </div>
+    </div>
+    <div id="score-container">
+        <!-- Score display for both players -->
+        <div id="score">
+            Player 1: 100 points
+            <br>
+            Player 2: 75 points
         </div>
-    
-    
+    </div>
 
     <script>
-        // Define your questions and answers
-        let questions = [
-            { category: "Arithmetic", points: 100, question: "2 + 3", answer: 5 },
-
-        ];
-
-        // Initialize game state
-        let currentPlayer = 0;
-        let currentQuestion = null;
-        let score = [0, 0]; 
-
-        // Function to display the game board
-        function displayGameBoard() {
-            let gameBoard = document.getElementById("game-board");
-
-            // Create and display category buttons and point values
-            // Add event listeners to handle question selection
-        }
-
-        // Function to display a question
-        function displayQuestion(questionObj) {
-            const questionDiv = document.getElementById("question");
-
-            // 
-        function checkAnswer(playerAnswer) {
-            if (playerAnswer === currentQuestion.answer) {
-                score[currentPlayer] += currentQuestion.points;
-            } else {
-                score[currentPlayer] -= currentQuestion.points;
-            }
-            // Update score display
-            // Move to the next player
-            // Clear currentQuestion and displayGameBoard
-        }
-
-        // Function to update score display
-        function updateScoreDisplay() {
-            const scoreDiv = document.getElementById("score");
-            // Update score display for both players
-        }
-
-        // Initialize the game
-        displayGameBoard();
+        // Your JavaScript code remains the same as in your original code
     </script>
 </body>
 
