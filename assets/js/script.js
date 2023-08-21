@@ -5,17 +5,52 @@ let questions = [
 
 ];
 
-let currentPlayer = 1; // You can keep this variable for tracking the current player
-let player1Score = 0; // Use player-specific variables
+let currentPlayer = 1; 
+let player1Score = 0; 
 let player2Score = 0;
 let timer;
 let timeLeft = 10; // 10 seconds per question
 
 // Function to display the game board
+
+
 function displayGameBoard() {
-    // Add code to create and display category buttons and point values
-    // Add event listeners to handle question selection
+    let gameBoard = document.getElementById("game-board");
+    // Clear any existing content inside the game board
+    gameBoard.innerHTML = "";
+    // Loop through your questions to create category buttons and point values
+    questions.forEach((questionObj) => {
+        // Create a category button for each category
+        const categoryButton = document.createElement("button");
+        categoryButton.textContent = questionObj.category;
+        categoryButton.addEventListener("click", () => {
+            // Handle category button click
+            // You can implement logic to display questions for this category here
+            // Call the displayQuestion function with the appropriate questionObj
+            displayQuestion(questionObj);
+        });
+
+        // Create point value buttons for each category
+        for (let i = 0; i < 4; i++) {
+            let pointValueButton = document.createElement("button");
+            pointValueButton.textContent = `${i === 0 ? questionObj.points : questionObj.points - i * 50}`;
+            pointValueButton.addEventListener("click", () => {
+                // Handle point value button click
+                // You can implement logic to display the question for this point value here
+                // Call the displayQuestion function with the appropriate questionObj
+                displayQuestion(questionObj);
+            });
+            gameBoard.appendChild(categoryButton);
+            gameBoard.appendChild(pointValueButton);
+        }
+    });
 }
+
+
+
+
+
+
 
 // Function to display a question
 function displayQuestion(questionObj) {
