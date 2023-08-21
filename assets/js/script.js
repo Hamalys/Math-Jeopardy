@@ -1,68 +1,57 @@
+// Define your questions and initialize game state
+let questions = [
+    { category: "Arithmetic", points: 100, question: "2 + 3", answer: 5 },
+    // Add more questions here as needed
+];
 
-        
-                                    let questions = [
-                                    {category: "Arithmetic", points: 100, question: "2 + 3", answer: 5 },
-                                    ];
+let currentPlayer = 1; // You can keep this variable for tracking the current player
+let player1Score = 0; // Use player-specific variables
+let player2Score = 0;
+let timer;
+let timeLeft = 10; // 10 seconds per question
 
-                                    // Initialize game state
-                                    let currentPlayer = 0;
-                                    let currentQuestion = null;
-                                    let score = [0, 0];
+// Function to display the game board
+function displayGameBoard() {
+    // Add code to create and display category buttons and point values
+    // Add event listeners to handle question selection
+}
 
-                                    // Function to display the game board
-                                    function displayGameBoard() {
-                                        let gameBoard = document.getElementById("game-board");
+// Function to display a question
+function displayQuestion(questionObj) {
+    // Add code to display the question and answer choices
+}
 
-            // Create and display category buttons and point values
-            // Add event listeners to handle question selection
+// Function to generate a random incorrect answer
+function getRandomNumber() {
+    return Math.floor(Math.random() * 10) + 1;
+}
+
+// Function to check the answer
+function checkAnswer(correctAnswer, points) {
+    const selectedOption = parseInt(event.target.textContent.split(":")[1].trim());
+    if (selectedOption === correctAnswer) {
+        // Correct answer
+        if (currentPlayer === 1) {
+            player1Score += points; // Update player-specific score
+        } else {
+            player2Score += points;
         }
+    }
 
-                                    // Function to display a question
-                                    function displayQuestion(questionObj) {
-            const questionDiv = document.getElementById("question");
+    // Switch to the next player
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
 
-                                    // Display the question
-                                    questionDiv.textContent = `Question: ${questionObj.question}`;
+    // Update the score display
+    document.getElementById("score").innerHTML = `Player 1: ${player1Score} points<br>Player 2: ${player2Score} points`;
 
-                                    // Clear previous answer choices
-                                    const answerChoicesDiv = document.getElementById("answer-choices");
-                                    answerChoicesDiv.innerHTML = "";
+    // Start the timer for the next question
+    startTimer();
+}
 
-                                    // Create answer choice buttons
-                                    for (let i = 0; i < 4; i++) {
-                const answerButton = document.createElement("button");
-                                    answerButton.textContent = `Option ${i + 1}: ${i === 0 ? questionObj.answer : getRandomNumber()}`;
-                answerButton.addEventListener("click", () => {
-                                        // Handle answer selection to check the answer
-                                        checkAnswer(i === 0, questionObj.points);
-                });
-                                    answerChoicesDiv.appendChild(answerButton);
-            }
-        }
+// Function to update score display
+function updateScoreDisplay() {
+    // Add code to update the score display
+}
 
-                                    // Function to generate a random incorrect answer
-                                    function getRandomNumber() {
-            return Math.floor(Math.random() * 10) + 1;
-        }
-
-                                    // Function to check the answer
-                                    function checkAnswer(isCorrect, points) {
-            if (isCorrect) {
-                                        score[currentPlayer] += points;
-            } else {
-                                        score[currentPlayer] -= points;
-            }
-                                    updateScoreDisplay();
-            // Move to the next player (You need to implement player switching logic)
-            // Clear currentQuestion and displayGameBoard
-        }
-
-                                    // Function to update score display
-                                    function updateScoreDisplay() {
-            const scoreDiv = document.getElementById("score");
-                                    scoreDiv.textContent = `Player 1: ${score[0]} points\nPlayer 2: ${score[1]} points`;
-        }
-
-                                    // Initialize the game
-                                    displayGameBoard();
-                                
+// Initialize the game
+displayGameBoard();
