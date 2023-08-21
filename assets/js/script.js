@@ -1,7 +1,8 @@
 // Define your questions and initialize game state
 let questions = [
-    { category: "Arithmetic", points: 100, question: "2 + 3", answer: 5 },
-    // Add more questions here as needed
+    { category: 'Arithematic', points: 300, question: '8 multiplied by 6', answer: 42 },
+    { category: "Arithmetic", points: 300, question: "2 + 3", answer: 5 },
+
 ];
 
 let currentPlayer = 1; // You can keep this variable for tracking the current player
