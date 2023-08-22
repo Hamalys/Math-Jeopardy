@@ -7,7 +7,8 @@ html {
     background-color: #f0f0f0;
 
 }
-/* Style for the game board */
+
+/* Style for the game game */
 #game-board {
     display: flex;
     flex-wrap: wrap;
@@ -17,6 +18,66 @@ html {
     background-color: #333;
     border-radius: 10px;
 }
+#game-board {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.point-value-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.point-value-button {
+    flex: 1;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.question-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.answer-choices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answer-button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Rest of your CSS styles */
 
 /* Style for categories button */
 #game-board button {
