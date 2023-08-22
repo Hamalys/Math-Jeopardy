@@ -7,29 +7,37 @@ html {
     background-color: #f0f0f0;
 
 }
-
 /* Style for the game board */
 #game-board {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 20px;
-    padding: 20px;
+    margin: 2% 5%;
+    padding: 2%;
     background-color: #333;
-    /* Background color for the game board */
     border-radius: 10px;
 }
-/* style for categories buttom */
+
+/* Style for categories button */
 #game-board button {
-    margin: 5px;
-    padding: 10px 20px;
+    margin: 1%;
+    padding: 2% 4%;
     background-color: #555;
-    /* Button background color */
     color: #fff;
-    /* Button text color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/* CSS Media Query for smaller screens */
+@media (max-width: 768px) {
+    #game-board {
+        flex-direction: column;
+    }
+}
+/* Style for the game board */
+#game-board {
+    border-radius: 10px;
 }
 
 /* Style for the question container */
