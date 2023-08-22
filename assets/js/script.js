@@ -35,9 +35,18 @@ function displayGameBoard() {
             pointValueButton.textContent = `${i === 0 ? questionObj.points : questionObj.points - i * 50}`;
             pointValueButton.dataset.points = i === 0 ? questionObj.points : questionObj.points - i * 50;
             pointValueButton.addEventListener("click", () => {
-                // Handle point value button click
-                // You can implement logic to display the question for this point value here
-                // Call the displayQuestion function with the appropriate questionObj
+
+                function displayQuestion(questionObj) {
+                    // Display the question
+                    document.getElementById("question1").textContent = `Question: ${questionObj.question}`;
+                    // Display answer choices (assuming you have buttons for answer choices)
+                    const answerChoices = document.getElementById("answer-choices1");
+                    const buttons = answerChoices.getElementsByTagName("button");
+                    // Assuming you have four answer choices
+                    for (let i = 0; i < buttons.length; i++) {
+                        buttons[i].textContent = `Option ${i + 1}: ${getRandomNumber()}`;
+                    }}
+        
                 displayQuestion(questionObj);
             });
             gameBoard.appendChild(categoryButton);
