@@ -23,9 +23,7 @@ function displayGameBoard() {
         let categoryButton = document.createElement("button");
         categoryButton.textContent = questionObj.category;
         categoryButton.addEventListener("click", () => {
-            // Handle category button click
-            // You can implement logic to display questions for this category here
-            // Call the displayQuestion function with the appropriate questionObj
+            
             displayQuestion(questionObj);
         });
 
