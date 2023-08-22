@@ -13,15 +13,12 @@ html {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 2% 5%;
-    padding: 2%;
     background-color: #333;
     border-radius: 10px;
-}
-#game-board {
+    padding: 2%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;}
+    margin: 2% auto 0;
+    }
 
 #game-container {
     display: flex;
@@ -93,13 +90,9 @@ html {
 /* CSS Media Query for smaller screens */
 @media (max-width: 768px) {
     #game-board {
-        flex-direction: column;border-radius: 10px;
+        flex-direction: column;
+        border-radius: 10px;
     }
-}
-/* Style for the question container */
-#question-container {
-    text-align: center;
-    margin-top: 20px;
 }
 
 #question {
@@ -150,4 +143,15 @@ html {
     /* Score text color */
     padding: 10px;
     border-radius: 5px;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    /* CSS Media Query for smaller screens */
+        @media (max-width: 768px) {
+            #game-board {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+        }
 }
