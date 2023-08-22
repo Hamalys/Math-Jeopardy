@@ -35,8 +35,6 @@ html {
         flex-direction: column;border-radius: 10px;
     }
 }
- 
-
 /* Style for the question container */
 #question-container {
     text-align: center;
