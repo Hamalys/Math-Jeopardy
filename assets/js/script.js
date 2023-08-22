@@ -64,8 +64,8 @@ function displayQuestion(questionObj) {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].textContent = `Option ${i + 1}: ${getRandomNumber()}`;
         buttons[i].dataset.answer = buttons[i].textContent.split(":")[1].trim();
-        buttons[i].addEventListener("click", () => {
-            checkAnswer(questionObj.answer);
+        buttons[i].addEventListener("click", (event) => {
+            checkAnswer(event, questionObj.answer);
         });
     }
 
@@ -79,8 +79,9 @@ function getRandomNumber() {
 }
 
 // Function to check the answer
-function checkAnswer(correctAnswer) {
-    let selectedOption = parseInt(event.target.dataset.answer);
+function checkAnswer(correctAnswer) 
+ {
+    let selectedOption =parseInt(event.target.dataset.answer);
     if (selectedOption === correctAnswer) {
         // Correct answer
         if (currentPlayer === 1) {
