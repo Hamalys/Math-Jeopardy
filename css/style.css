@@ -5,7 +5,7 @@ html {
     padding: 0;
     font-family: 'Raleway', sans-serif;
     background-color: #f0f0f0;
-    /* Background color for the entire page */
+
 }
 
 /* Style for the game board */
@@ -19,7 +19,7 @@ html {
     /* Background color for the game board */
     border-radius: 10px;
 }
-
+/* style for categories buttom */
 #game-board button {
     margin: 5px;
     padding: 10px 20px;
