@@ -32,13 +32,10 @@ html {
 /* CSS Media Query for smaller screens */
 @media (max-width: 768px) {
     #game-board {
-        flex-direction: column;
+        flex-direction: column;border-radius: 10px;
     }
 }
-/* Style for the game board */
-#game-board {
-    border-radius: 10px;
-}
+ 
 
 /* Style for the question container */
 #question-container {
