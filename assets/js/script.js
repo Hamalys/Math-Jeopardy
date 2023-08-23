@@ -1,4 +1,5 @@
-// Define  questions and initialize game state
+
+// Define questions and initialize game state
 let questions = [
     { category: 'Arithmetic', points: 100, question: 'What is 8 multiplied by 6?', answer: 48 },
     { category: 'Arithmetic', points: 200, question: 'What is the result of 5 + 7?', answer: 12 },
@@ -17,13 +18,12 @@ function displayGameBoard() {
     let gameBoard = document.getElementById("game-board");
     // Clear any existing content inside the game board
     gameBoard.innerHTML = "";
-    // Loop through your questions to create category buttons and point values
+    // Loop through my questions to create category buttons and point values
     questions.forEach((questionObj) => {
         // Create a category button for each category
         let categoryButton = document.createElement("button");
         categoryButton.textContent = questionObj.category;
         categoryButton.addEventListener("click", () => {
-            
             displayQuestion(questionObj);
         });
 
@@ -33,18 +33,6 @@ function displayGameBoard() {
             pointValueButton.textContent = `${i === 0 ? questionObj.points : questionObj.points - i * 50}`;
             pointValueButton.dataset.points = i === 0 ? questionObj.points : questionObj.points - i * 50;
             pointValueButton.addEventListener("click", () => {
-
-                function displayQuestion(questionObj) {
-                    // Display the question
-                    document.getElementById("question1").textContent = `Question: ${questionObj.question}`;
-                    // Display answer choices (assuming you have buttons for answer choices)
-                    const answerChoices = document.getElementById("answer-choices1");
-                    const buttons = answerChoices.getElementsByTagName("button");
-                    // Assuming you have four answer choices
-                    for (let i = 0; i < buttons.length; i++) {
-                        buttons[i].textContent = `Option ${i + 1}: ${getRandomNumber()}`;
-                    }}
-        
                 displayQuestion(questionObj);
             });
             gameBoard.appendChild(categoryButton);
@@ -55,6 +43,9 @@ function displayGameBoard() {
 
 // Function to display a question
 function displayQuestion(questionObj) {
+    // Clear the game board
+    let gameBoard = document.getElementById("game-board");
+    gameBoard.innerHTML = "";
     // Display the question and answer choices
     document.getElementById("question1").textContent = `Question: ${questionObj.question}`;
     let answerChoices = document.getElementById("answer-choices1");
@@ -63,12 +54,13 @@ function displayQuestion(questionObj) {
         buttons[i].textContent = `Option ${i + 1}: ${getRandomNumber()}`;
         buttons[i].dataset.answer = buttons[i].textContent.split(":")[1].trim();
         buttons[i].addEventListener("click", (event) => {
-            checkAnswer(event, questionObj.answer);
+            checkAnswer(questionObj.answer);
         });
     }
-
     // Remove the selected point value button
     document.querySelector(`button[data-points="${questionObj.points}"]`).remove();
+    // Start the timer for this question
+    startTimer();
 }
 
 // Function to generate a random incorrect answer
@@ -77,9 +69,8 @@ function getRandomNumber() {
 }
 
 // Function to check the answer
-function checkAnswer(correctAnswer) 
- {
-    let selectedOption =parseInt(event.target.dataset.answer);
+function checkAnswer(correctAnswer) {
+    let selectedOption = parseInt(event.target.dataset.answer);
     if (selectedOption === correctAnswer) {
         // Correct answer
         if (currentPlayer === 1) {
@@ -95,8 +86,8 @@ function checkAnswer(correctAnswer)
     // Update the score display
     document.getElementById("score").innerHTML = `Player 1: ${player1Score} points<br>Player 2: ${player2Score} points`;
 
-    // Start the timer for the next question
-    startTimer();
+    // Display the game board again
+    displayGameBoard();
 }
 
 // To start the timer
