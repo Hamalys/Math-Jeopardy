@@ -12,32 +12,39 @@ let player1Score = 0;
 let player2Score = 0;
 let timer;
 let timeLeft = 10; // 10 seconds per question
-
 // Display the game board
 function displayGameBoard() {
     let gameBoard = document.getElementById("game-board");
     // Clear any existing content inside the game board
     gameBoard.innerHTML = "";
-    // Loop through my questions to create category buttons and point values
+    // Loop through questions to create categories and point values
     questions.forEach((questionObj) => {
+        // Create a category div
+        let categoryDiv = document.createElement("div");
+        categoryDiv.classList.add("category");
+
         // Create a category button for each category
         let categoryButton = document.createElement("button");
         categoryButton.textContent = questionObj.category;
+        categoryButton.classList.add("category-button");
         categoryButton.addEventListener("click", () => {
             displayQuestion(questionObj);
         });
+        categoryDiv.appendChild(categoryButton);
 
         // Create point value buttons for each category
         for (let i = 0; i < 4; i++) {
             let pointValueButton = document.createElement("button");
             pointValueButton.textContent = `${i === 0 ? questionObj.points : questionObj.points - i * 50}`;
             pointValueButton.dataset.points = i === 0 ? questionObj.points : questionObj.points - i * 50;
+            pointValueButton.classList.add("point-value-button");
             pointValueButton.addEventListener("click", () => {
                 displayQuestion(questionObj);
             });
-            gameBoard.appendChild(categoryButton);
-            gameBoard.appendChild(pointValueButton);
+            categoryDiv.appendChild(pointValueButton);
         }
+
+        gameBoard.appendChild(categoryDiv);
     });
 }
 
