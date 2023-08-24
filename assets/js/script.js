@@ -1,4 +1,3 @@
-
 // Define questions and initialize game state
 let questions = [
     { category: 'Arithmetic', points: 100, question: 'What is 8 multiplied by 6?', answer: 48 },
@@ -10,13 +9,26 @@ let questions = [
 let currentPlayer = 1;
 let player1Score = 0;
 let player2Score = 0;
+let totalQuestions = questions.length;
+let questionsAnswered = 0;
+let maxQuestions = 5; // Change this to the desired number of questions per game
 let timer;
 let timeLeft = 10; // 10 seconds per question
+
 // Display the game board
 function displayGameBoard() {
+    // Check if the game is over
+    if (questionsAnswered >= maxQuestions) {
+        endGame();
+        return;
+    }
+
     let gameBoard = document.getElementById("game-board");
     // Clear any existing content inside the game board
     gameBoard.innerHTML = "";
+    // Display current player's turn
+    document.getElementById("current-player").textContent = `Player ${currentPlayer}'s Turn`;
+
     // Loop through questions to create categories and point values
     questions.forEach((questionObj) => {
         // Create a category div
@@ -89,12 +101,29 @@ function checkAnswer(correctAnswer) {
 
     // Switch to the next player
     currentPlayer = currentPlayer === 1 ? 2 : 1;
+    questionsAnswered++;
 
     // Update the score display
     document.getElementById("score").innerHTML = `Player 1: ${player1Score} points<br>Player 2: ${player2Score} points`;
 
     // Display the game board again
     displayGameBoard();
+}
+
+// Function to end the game
+function endGame() {
+    // Display the final scores and the winner
+    let resultMessage = "";
+    if (player1Score > player2Score) {
+        resultMessage = "Player 1 wins!";
+    } else if (player2Score > player1Score) {
+        resultMessage = "Player 2 wins!";
+    } else {
+        resultMessage = "It's a tie!";
+    }
+
+    document.getElementById("game-board").innerHTML = `<h1>Game Over!</h1><p>${resultMessage}</p>`;
+    document.getElementById("current-player").textContent = "";
 }
 
 // To start the timer
@@ -107,7 +136,10 @@ function startTimer() {
         updateTimerDisplay();
         if (timeLeft === 0) {
             clearInterval(timer);
-            // Handle time's up logic here
+            // Handle time's up logic here (deduct points or skip to the next player's turn)
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            questionsAnswered++;
+            displayGameBoard();
         }
     }, 1000);
 }
