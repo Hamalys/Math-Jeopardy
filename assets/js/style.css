@@ -86,14 +86,6 @@ html {
     cursor: pointer;
 }
 
-/* CSS Media Query for smaller screens */
-@media (max-width: 768px) {
-    #game-board {
-        flex-direction: column;
-        border-radius: 10px;
-    }
-}
-
 #question {
     font-size: 24px;
     margin-bottom: 20px;
@@ -146,11 +138,8 @@ html {
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
-    /* CSS Media Query for smaller screens */
-        @media (max-width: 768px) {
             #game-board {
                 flex-direction: column;
                 border-radius: 10px;
             }
         }
-}
