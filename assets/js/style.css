@@ -51,6 +51,49 @@ header {
     /* Winner message text color */
     margin-bottom: 20px;
 }
+/* CSS for feedback animations */
+@keyframes checkmark {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes x {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+/* Apply animations to elements */
+.correct-feedback {
+    animation: checkmark 0.3s ease forwards;
+    color: green;
+}
+
+.incorrect-feedback {
+    animation: x 0.3s ease forwards;
+    color: red;
+}
 
 #restart-button {
     background-color: #555;
