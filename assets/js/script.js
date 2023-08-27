@@ -1,168 +1,36 @@
-// Define questions and initialize game state
-let questions = [
-    { category: 'Arithmetic', points: 100, question: 'What is 8 multiplied by 6?', answer: 48 },
-    { category: 'Arithmetic', points: 200, question: 'What is the result of 5 + 7?', answer: 12 },
-    { category: 'Arithmetic', points: 250, question: 'What is 10 divided by 2?', answer: 5 },
-    { category: 'Arithmetic', points: 300, question: 'What is 20 minus 7?', answer: 13 },
-];
-
-let currentPlayer = 1;
-let player1Score = 0;
-let player2Score = 0;
-let totalQuestions = questions.length;
-let questionsAnswered = 0;
-let maxQuestions = 5; // Change this to the desired number of questions per game
-let timer;
-let timeLeft = 10; // 10 seconds per question
-
-// Display the game board
-function displayGameBoard() {
-    // Check if the game is over
-    if (questionsAnswered >= maxQuestions) {
-        endGame();
-        return;
-    }
-
-    let gameBoard = document.getElementById("game-board");
-    // Clear any existing content inside the game board
-    gameBoard.innerHTML = "";
-    // Display current player's turn
-    document.getElementById("current-player").textContent = `Player ${currentPlayer}'s Turn`;
-
-    // Loop through questions to create categories and point values
-    questions.forEach((questionObj) => {
-        // Create a category div
-        let categoryDiv = document.createElement("div");
-        categoryDiv.classList.add("category");
-
-        // Create a category button for each category
-        let categoryButton = document.createElement("button");
-        categoryButton.textContent = questionObj.category;
-        categoryButton.classList.add("category-button");
-        categoryButton.addEventListener("click", () => {
-            displayQuestion(questionObj);
-        });
-        categoryDiv.appendChild(categoryButton);
-
-        // Create point value buttons for each category
-        for (let i = 0; i < 4; i++) {
-            let pointValueButton = document.createElement("button");
-            pointValueButton.textContent = `${i === 0 ? questionObj.points : questionObj.points - i * 50}`;
-            pointValueButton.dataset.points = i === 0 ? questionObj.points : questionObj.points - i * 50;
-            pointValueButton.classList.add("point-value-button");
-            pointValueButton.addEventListener("click", () => {
-                displayQuestion(questionObj);
-            });
-            categoryDiv.appendChild(pointValueButton);
-        }
-
-        gameBoard.appendChild(categoryDiv);
-    });
+// Calculate and display the winner and loser
+let winnerMessage;
+if (player1Score > player2Score) {
+    winnerMessage = "Player 1 wins!";
+} else if (player2Score > player1Score) {
+    winnerMessage = "Player 2 wins!";
+} else {
+    winnerMessage = "It's a tie!";
 }
 
-// Function to display a question
-function displayQuestion(questionObj) {
-    // Clear the game board
-    let gameBoard = document.getElementById("game-board");
-    gameBoard.innerHTML = "";
-    // Display the question and answer choices
-    document.getElementById("question1").textContent = `Question: ${questionObj.question}`;
-    let answerChoices = document.getElementById("answer-choices1");
-    let buttons = answerChoices.getElementsByTagName("button");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].textContent = `Option ${i + 1}: ${getRandomNumber()}`;
-        buttons[i].dataset.answer = buttons[i].textContent.split(":")[1].trim();
-        buttons[i].addEventListener("click", (event) => {
-            checkAnswer(questionObj.answer);
-        });
-    }
-    // Remove the selected point value button
-    document.querySelector(`button[data-points="${questionObj.points}"]`).remove();
-    // Start the timer for this question
-    startTimer();
-}
+document.getElementById("game-board").innerHTML = `<h1>Game Over!</h1><p>${winnerMessage}</p>`;
+document.getElementById("current-player").textContent = "";
 
-// Function to generate a random incorrect answer
-function getRandomNumber() {
-    return Math.floor(Math.random() * 10) + 1;
-}
+// Optionally, you can display the final scores for both players on the end game screen.
+document.getElementById("player1-score").textContent = `Player 1: ${player1Score} points`;
+document.getElementById("player2-score").textContent = `Player 2: ${player2Score} points`;
 
-// Function to check the answer
-function checkAnswer(correctAnswer) {
-    let selectedOption = parseInt(event.target.dataset.answer);
-    if (selectedOption === correctAnswer) {
-        // Correct answer
-        if (currentPlayer === 1) {
-            player1Score += parseInt(event.target.parentNode.parentNode.dataset.points); // Update player-specific score
-        } else {
-            player2Score += parseInt(event.target.parentNode.parentNode.dataset.points);
-        }
-    }
+// Show the winner container
+document.getElementById("winner-container").style.display = "block";
+// Add an event listener for the "Restart Game" button
+document.getElementById("restart-button").addEventListener("click", () => {
+    // Reset game variables and scores
+    currentPlayer = 1;
+    player1Score = 0;
+    player2Score = 0;
+    questionsAnswered = 0;
 
-    // Switch to the next player
-    currentPlayer = currentPlayer === 1 ? 2 : 1;
-    questionsAnswered++;
-
-    // Update the score display
-    document.getElementById("score").innerHTML = `Player 1: ${player1Score} points<br>Player 2: ${player2Score} points`;
-    // Function to end the game
-    function endGame() {
-        // Calculate and display the winner and loser
-        let winnerMessage;
-        if (player1Score > player2Score) {
-            winnerMessage = "Player 1 wins!";
-        } else if (player2Score > player1Score) {
-            winnerMessage = "Player 2 wins!";
-        } else {
-            winnerMessage = "It's a tie!";
-        }
-
-        document.getElementById("winner-message").textContent = winnerMessage;
-        document.getElementById("player1-score").textContent = player1Score;
-        document.getElementById("player2-score").textContent = player2Score;
-
-        // Show the winner container
-        document.getElementById("winner-container").style.display = "block";
-    }
-
-    // Add an event listener for the "Restart Game" button
-    document.getElementById("restart-button").addEventListener("click", () => {
-        // Reset game variables and scores
-        currentPlayer = 1;
-        player1Score = 0;
-        player2Score = 0;
-        questionsAnswered = 0;
-
-        // Hide the winner container
-        document.getElementById("winner-container").style.display = "none";
-
-        // Display the game board again
-        displayGameBoard();
-    });
-
-    
-    
-    // Display the game board again
+    // Hide the winner container
+    document.getElementById("winner-container").style.display = "none";
     displayGameBoard();
-}
+});
 
-// Function to end the game
-function endGame() {
-    // Display the final scores and the winner
-    let resultMessage = "";
-    if (player1Score > player2Score) {
-        resultMessage = "Player 1 wins!";
-    } else if (player2Score > player1Score) {
-        resultMessage = "Player 2 wins!";
-    } else {
-        resultMessage = "It's a tie!";
-    }
-
-    document.getElementById("game-board").innerHTML = `<h1>Game Over!</h1><p>${resultMessage}</p>`;
-    document.getElementById("current-player").textContent = "";
-}
-
-// To start the timer
+// Function to start the timer
 function startTimer() {
     clearInterval(timer);
     timeLeft = 10;
@@ -177,9 +45,7 @@ function startTimer() {
             questionsAnswered++;
             displayGameBoard();
         }
-    }, 
-    
-    1000);
+    }, 1000);
 }
 
 // Function to update timer display
@@ -189,3 +55,5 @@ function updateTimerDisplay() {
 
 // Initialize the game
 displayGameBoard();
+
+
