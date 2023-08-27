@@ -36,8 +36,6 @@ header {
     cursor: pointer;
 }
 
-/* Add styling for other game elements as needed */
-
 /* Style for the winner container */
 #winner-container {
     display: none;

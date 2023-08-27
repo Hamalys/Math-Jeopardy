@@ -6,74 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Raleway%7CRighteous" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
-
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <title>Math Jeopardy</title>
 </head>
 
 <body>
-<h1> MATH JEOPARDY</h1>
-    <div id="game-board">
+    <header>
+        <h1>MATH JEOPARDY</h1>
+    </header>
     <div id="game-container">
-        <div class="category">
-            <h3>Math</h3>
-            <ul>
-                <li><button data-points="100">100</button></li>
-                <li><button data-points="200">200</button></li>
-                <li><button data-points="250">300</button></li>
-                <li><button data-points="300">300</button></li>
-            </ul>
-        </div></div>
-    </div>
-    <div id="current-player">
-        player 1 and player 2
-    </div>
-    <div id="question container1">
-        <div id="question1">
-            Question: What is 8 multiplied by 6?
-        </div>
-        <div id="answer-choices1">
-            <button onclick="checkAnswer(48)">Option 1: 48</button>
-            <button onclick="checkAnswer(14)">Option 2: 14</button>
-            <button onclick="checkAnswer(42)">Option 3: 42</button>
-            <button onclick="checkAnswer(24)">Option 4: 24</button>
-        </div>
-    </div>
-    
-    <div id="question-container2">
-        <div id="question2">
-            Question: What is the result of 5 + 7?
-        </div>
-        <div id="answer-choices2">
-            <button onclick="checkAnswer(12)">Option 1: 12</button>
-            <button onclick="checkAnswer(9)">Option 2: 9</button>
-            <button onclick="checkAnswer(8)">Option 3: 8</button>
-            <button onclick="checkAnswer(14)">Option 4: 14</button>
-        </div>
-    </div>
-<div id="score container" >
-<div id='score'>
-</div>
-</div>
-    <div id="timer-container">
-        <!-- Timer display -->
-        <div id="timer">
-            Time Left: 10 seconds
-        </div>
+        Question: What is 9 multiplied by 7?
+        Answer: 63
+        Question: Calculate 12 divided by 4.
+        Answer: 3
+        Question: What is 15 plus 18?
+        Answer: 33
+        Question: Subtract 42 from 60.
+        Answer: 18
     </div>
     <div id="score-container">
-        <!-- Score display for both players -->
         <div id="score">
-            Player 1: 100 points
+            Player 1: <span id="player1-score">0</span> points
             <br>
-            Player 2: 75 points
+            Player 2: <span id="player2-score">0</span> points
         </div>
     </div>
-
-      <script src="assets/js/script.js"></script>
-
-    
+    <div id="winner-container">
+        <p id="winner-message"></p>
+        <button id="restart-button">Restart Game</button>
+    </div>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
