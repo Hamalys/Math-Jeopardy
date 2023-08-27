@@ -1,4 +1,4 @@
-// Sample questions and answers (you can replace this with your actual data)
+// Sample questions and answers 
 const questions = [
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
@@ -27,10 +27,9 @@ function displayQuestion(questionIndex) {
         </ul>
     `;
 
-    // Start the timer
     startTimer();
 
-    // Handle correct/incorrect answers (simplified for demonstration)
+    // Handle correct/incorrect answers 
     const answerElement = document.createElement("div");
     answerElement.id = "answer-feedback";
     questionContainer.appendChild(answerElement);
