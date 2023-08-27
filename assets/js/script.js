@@ -51,6 +51,11 @@ function startTimer() {
     }, 1000);
 }
 
+answerElement.classList.add("correct-feedback");
+answerElement.textContent = "Correct!";
+answerElement.classList.add("incorrect-feedback");
+answerElement.textContent = "Incorrect!";
+
 
 // Function to update timer display
 function updateTimerDisplay() {
