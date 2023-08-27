@@ -1,4 +1,4 @@
-/* global style */
+/* Resetting some default styles */
 body {
     margin: 0;
     padding: 0;
@@ -8,12 +8,11 @@ body {
 
 header {
     background-color: #333;
-    /* Header background color */
     text-align: center;
     padding: 20px 0;
 }
 
-/* Style for the game */
+/* Style for the game container */
 #game-container {
     display: flex;
     flex-wrap: wrap;
@@ -25,7 +24,7 @@ header {
     margin: 2% auto 0;
 }
 
-/* Style for categories button */
+/* Style for category buttons */
 .category-button {
     margin: 1%;
     padding: 2% 4%;
@@ -45,13 +44,14 @@ header {
     margin-top: 20px;
 }
 
-#winner-message {
+/* Style for the winner message */
+.winner-message {
     font-size: 24px;
     color: #fff;
-    /* Winner message text color */
     margin-bottom: 20px;
 }
-/* CSS for feedback animations */
+
+/* Feedback animations */
 @keyframes checkmark {
     0% {
         transform: scale(0);
@@ -84,7 +84,7 @@ header {
     }
 }
 
-/* Apply animations to elements */
+/* animations elements */
 .correct-feedback {
     animation: checkmark 0.3s ease forwards;
     color: green;
@@ -95,6 +95,7 @@ header {
     color: red;
 }
 
+/* Restart button styles */
 #restart-button {
     background-color: #555;
     color: #fff;
@@ -103,6 +104,8 @@ header {
     padding: 10px 20px;
     cursor: pointer;
 }
+
+/* Button hover effect */
 .button {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -112,12 +115,14 @@ header {
     transform: scale(1.1);
 }
 
+/* Progress bar style */
 .progress-bar {
     width: 0%;
     height: 10px;
     background-color: #FFD700;
     transition: width 0.5s ease;
 }
+
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
     #game-container {
