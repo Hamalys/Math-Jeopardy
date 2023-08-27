@@ -1,18 +1,20 @@
 /* global style */
-body
- {
+body {
     margin: 0;
     padding: 0;
-    font-family: 'Raleway', sans-serif; 
-   background-color: #cf2323;
+    font-family: 'Raleway', sans-serif;
+    background-color: #cf2323;
 }
+
 header {
     background-color: #333;
+    /* Header background color */
     text-align: center;
     padding: 20px 0;
 }
+
 /* Style for the game */
-#game-board {
+#game-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -21,19 +23,9 @@ header {
     padding: 2%;
     max-width: 1200px;
     margin: 2% auto 0;
-    }
-
-#game-container {
-    display: flex;
-    flex-direction: wrap;
-    justify-content: space-around ;
-    background-color: #333;
-    border-radius: 10px;
-    padding: 2%;
-    max-width: 1200px;
-    margin: 2% auto 0;
 }
 
+/* Style for categories button */
 .category-button {
     margin: 1%;
     padding: 2% 4%;
@@ -44,111 +36,37 @@ header {
     cursor: pointer;
 }
 
-.point-value-container {
-    display: flex;
-    justify-content: space-between;
-}
+/* Add styling for other game elements as needed */
 
-.point-value-button {
-    flex: 1;
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.question-text {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.answer-choices {
-    display: flex;
+/* Style for the winner container */
+#winner-container {
+    display: none;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
-.answer-button {
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Rest of your CSS styles */
-
-/* Style for categories button */
-#game-board button {
-    margin: 1%;
-    padding: 2% 4%;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#question {
+#winner-message {
     font-size: 24px;
+    color: #fff;
+    /* Winner message text color */
     margin-bottom: 20px;
 }
 
-#answer-choices button {
-    margin: 5px;
-    padding: 10px 20px;
+#restart-button {
     background-color: #555;
-    /* Button background color */
     color: #fff;
-    /* Button text color */
     border: none;
     border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
-}
-
-/* Style for the timer container */
-#timer-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#timer {
-    font-size: 20px;
-    font-weight: bold;
-    background-color: #333;
-    /* Timer background color */
-    color: #fff;
-    /* Timer text color */
-    padding: 10px;
-    border-radius: 5px;
-}
-
-/* Style for the score container */
-#score-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#score {
-    font-size: 20px;
-    background-color: #333;
-    /* Score background color */
-    color: #fff;
-    /* Score text color */
-    padding: 10px;
-    border-radius: 5px;
 }
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
-            #game-board {
-                flex-direction: column;
-                border-radius: 10px;
-            }
-        }
+    #game-container {
+        flex-direction: column;
+        border-radius: 10px;
+    }
+}
