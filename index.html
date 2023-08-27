@@ -25,6 +25,9 @@
         Answer: 18
     </div>
     <div id="score-container">
+        <audio id="correct-sound" src="correct.mp3"></audio>
+        <audio id="incorrect-sound" src="incorrect.mp3"></audio>
+
         <div id="score">
             Player 1: <span id="player1-score">0</span> points
             <br>
@@ -34,6 +37,10 @@
     <div id="winner-container">
         <p id="winner-message"></p>
         <button id="restart-button">Restart Game</button>
+        <div id="winning-screen">
+            <h1>Congratulations, You Won!</h1>
+        </div>
+
     </div>
     <script src="assets/js/script.js"></script>
 </body>
