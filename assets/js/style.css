@@ -60,7 +60,15 @@ header {
     padding: 10px 20px;
     cursor: pointer;
 }
-
+.progress-bar {
+    width: 0%;
+    /* Initially empty */
+    height: 10px;
+    background-color: #FFD700;
+    /* Bright color */
+    transition: width 0.5s ease;
+    /* Smooth animation */
+}
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
     #game-container {
