@@ -105,7 +105,43 @@ function checkAnswer(correctAnswer) {
 
     // Update the score display
     document.getElementById("score").innerHTML = `Player 1: ${player1Score} points<br>Player 2: ${player2Score} points`;
+    // Function to end the game
+    function endGame() {
+        // Calculate and display the winner and loser
+        let winnerMessage;
+        if (player1Score > player2Score) {
+            winnerMessage = "Player 1 wins!";
+        } else if (player2Score > player1Score) {
+            winnerMessage = "Player 2 wins!";
+        } else {
+            winnerMessage = "It's a tie!";
+        }
 
+        document.getElementById("winner-message").textContent = winnerMessage;
+        document.getElementById("player1-score").textContent = player1Score;
+        document.getElementById("player2-score").textContent = player2Score;
+
+        // Show the winner container
+        document.getElementById("winner-container").style.display = "block";
+    }
+
+    // Add an event listener for the "Restart Game" button
+    document.getElementById("restart-button").addEventListener("click", () => {
+        // Reset game variables and scores
+        currentPlayer = 1;
+        player1Score = 0;
+        player2Score = 0;
+        questionsAnswered = 0;
+
+        // Hide the winner container
+        document.getElementById("winner-container").style.display = "none";
+
+        // Display the game board again
+        displayGameBoard();
+    });
+
+    
+    
     // Display the game board again
     displayGameBoard();
 }
@@ -141,7 +177,9 @@ function startTimer() {
             questionsAnswered++;
             displayGameBoard();
         }
-    }, 1000);
+    }, 
+    
+    1000);
 }
 
 // Function to update timer display
