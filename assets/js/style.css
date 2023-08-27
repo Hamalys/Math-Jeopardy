@@ -60,14 +60,20 @@ header {
     padding: 10px 20px;
     cursor: pointer;
 }
+.button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #FFA500;
+    transform: scale(1.1);
+}
+
 .progress-bar {
     width: 0%;
-    /* Initially empty */
     height: 10px;
     background-color: #FFD700;
-    /* Bright color */
     transition: width 0.5s ease;
-    /* Smooth animation */
 }
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
