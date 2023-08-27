@@ -4,44 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Jeopardy</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Raleway%7CRighteous" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <title>Math Jeopardy</title>
+    <script src="assets/js/script.js" defer></script>
 </head>
 
 <body>
     <header>
         <h1>MATH JEOPARDY</h1>
     </header>
-    <div id="game-container">
-        Question: What is 9 multiplied by 7?
-        Answer: 63
-        Question: Calculate 12 divided by 4.
-        Answer: 3
-        Question: What is 15 plus 18?
-        Answer: 33
-        Question: Subtract 42 from 60.
-        Answer: 18
-    </div>
-    <div id="score-container">
-        <audio id="correct-sound" src="correct.mp3"></audio>
-        <audio id="incorrect-sound" src="incorrect.mp3"></audio>
 
-        <div id="score">
-            Player 1: <span id="player1-score">0</span> points
-            <br>
-            Player 2: <span id="player2-score">0</span> points
-        </div>
-    </div>
-    <div id="winner-container">
-        <p id="winner-message"></p>
-        <button id="restart-button">Restart Game</button>
-        <div id="winning-screen">
-            <h1>Congratulations, You Won!</h1>
+    <main>
+        <div id="game-container">
+            <h2>Arithmetic Questions</h2>
+            <ul>
+                <li>
+                    <p>Question: What is 9 multiplied by 7?</p>
+                    <p>Answer: 63</p>
+                </li>
+                <li>
+                    <p>Question: Calculate 12 divided by 4.</p>
+                    <p>Answer: 3</p>
+                </li>
+                <li>
+                    <p>Question: What is 15 plus 18?</p>
+                    <p>Answer: 33</p>
+                </li>
+                <li>
+                    <p>Question: Subtract 42 from 60.</p>
+                    <p>Answer: 18</p>
+                </li>
+            </ul>
         </div>
 
-    </div>
+        <div id="score-container">
+            <audio id="correct-sound" src="correct.mp3"></audio>
+            <audio id="incorrect-sound" src="incorrect.mp3"></audio>
+
+            <div id="score">
+                Player 1: <span id="player1-score">0</span> points<br>
+                Player 2: <span id="player2-score">0</span> points
+            </div>
+        </div>
+
+        <div id="winner-container">
+            <p id="winner-message"></p>
+            <button id="restart-button">Restart Game</button>
+            <div id="winning-screen">
+                <h1>Congratulations, You Won!</h1>
+            </div>
+        </div>
+    </main>
     <script src="assets/js/script.js"></script>
 </body>
 
