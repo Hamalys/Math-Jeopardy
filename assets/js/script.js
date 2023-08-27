@@ -29,6 +29,9 @@ document.getElementById("restart-button").addEventListener("click", () => {
     document.getElementById("winner-container").style.display = "none";
     displayGameBoard();
 });
+document.getElementById("correct-sound").play();
+document.getElementById("incorrect-sound").play();
+
 
 // Function to start the timer
 function startTimer() {
@@ -47,6 +50,7 @@ function startTimer() {
         }
     }, 1000);
 }
+
 
 // Function to update timer display
 function updateTimerDisplay() {
