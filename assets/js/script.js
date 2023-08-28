@@ -6,12 +6,20 @@ let questions = [
     { question: "Subtract 42 from 60.", answer: 18 },
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
-    { question: "What is 15 plus 18?", answer: 33 },
-    { question: "Subtract 42 from 60.", answer: 18 },
+    { question: "What is 12 plus 13?", answer: 25 },
+    { question: "Subtract 23 from 30.", answer: 7 },
+    { question: "What is 5 multiplied by 7?", answer: 35 },
+    { question: "Calculate 60 divided by 10.", answer: 6 },
+    { question: "What is 17 plus 13?", answer: 30 },
+    { question: "Subtract 40 from 50.", answer: 10 },
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
     { question: "What is 15 plus 18?", answer: 33 },
-    { question: "Subtract 42 from 6.", answer: 5 },
+    { question: "Subtract 42 from 60.", answer: 18 },
+    { question: "What is 12 multiplied by 5?", answer: 60 },
+    { question: "Calculate 81 divided by 9.", answer: 9 },
+    { question: "What is 1 plus 4?", answer: 5 },
+    { question: "Subtract 12 from 33.", answer: 21 },
 ];
 
 // Initialize variables
