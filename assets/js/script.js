@@ -30,13 +30,13 @@ function displayQuestion(questionIndex) {
     startTimer();
 
     // Handle correct/incorrect answers
-    const answerElement = document.createElement("div");
+    let answerElement = document.createElement("div");
     answerElement.id = "answer-feedback";
     questionContainer.appendChild(answerElement);
-    const answerInput = document.createElement("input");
+    let answerInput = document.createElement("input");
     answerInput.type = "text";
     questionContainer.appendChild(answerInput);
-    const submitButton = document.createElement("button");
+    let submitButton = document.createElement("button");
     submitButton.textContent = "Submit Answer";
     questionContainer.appendChild(submitButton);
 
@@ -85,12 +85,12 @@ function startTimer() {
     }, 1000);
 }
 
-// Function to update the timer display
+
 function updateTimerDisplay() {
     document.getElementById("timer").textContent = `Time Left: ${timeLeft} seconds`;
 }
 
-// Function to calculate the winner
+//  calculate the winner
 function calculateWinner() {
     let winnerMessage;
     if (player1Score > player2Score) {
