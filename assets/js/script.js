@@ -4,6 +4,14 @@ let questions = [
     { question: "Calculate 12 divided by 4.", answer: 3 },
     { question: "What is 15 plus 18?", answer: 33 },
     { question: "Subtract 42 from 60.", answer: 18 },
+    { question: "What is 9 multiplied by 7?", answer: 63 },
+    { question: "Calculate 12 divided by 4.", answer: 3 },
+    { question: "What is 15 plus 18?", answer: 33 },
+    { question: "Subtract 42 from 60.", answer: 18 },
+    { question: "What is 9 multiplied by 7?", answer: 63 },
+    { question: "Calculate 12 divided by 4.", answer: 3 },
+    { question: "What is 15 plus 18?", answer: 33 },
+    { question: "Subtract 42 from 6.", answer: 5 },
 ];
 
 // Initialize variables
