@@ -40,10 +40,16 @@
         </div>
 
         <div id="score-container">
-            <audio id="correct-sound" src="correct.mp3"></audio>
-            <audio id="incorrect-sound" src="incorrect.mp3"></audio>
+            <audio controls>
+                <source src="assets/audio-incorrect/incorrect.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+<audio controls>
+    <source src="assets/audio-correct/correct.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
-            <div id="score">
+        <div id="score">
                 Player 1: <span id="player1-score">0</span> points<br>
                 Player 2: <span id="player2-score">0</span> points
             </div>
