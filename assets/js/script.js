@@ -1,5 +1,5 @@
 // Questions and answers
-const questions = [
+let questions = [
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
     { question: "What is 15 plus 18?", answer: 33 },
@@ -13,7 +13,7 @@ let currentPlayer = 1;
 let questionsAnswered = 0;
 let timer;
 
-// Function to display a question
+// display a question
 function displayQuestion(questionIndex) {
     const questionContainer = document.getElementById("game-container");
     const question = questions[questionIndex];
@@ -25,9 +25,8 @@ function displayQuestion(questionIndex) {
                 <p>Question: ${question.question}</p>
             </li>
         </ul>
+        <div id="timer">Time Left: 10 seconds</div> <!-- Added timer display -->
     `;
-
-    startTimer();
 
     // Handle correct/incorrect answers
     let answerElement = document.createElement("div");
@@ -39,6 +38,8 @@ function displayQuestion(questionIndex) {
     let submitButton = document.createElement("button");
     submitButton.textContent = "Submit Answer";
     questionContainer.appendChild(submitButton);
+
+    startTimer(); 
 
     submitButton.addEventListener("click", () => {
         const userAnswer = parseInt(answerInput.value);
@@ -67,6 +68,11 @@ function displayQuestion(questionIndex) {
 function startTimer() {
     clearInterval(timer);
     let timeLeft = 10;
+
+    function updateTimerDisplay() {
+        document.getElementById("timer").textContent = `Time Left: ${timeLeft} seconds`;
+    }
+
     updateTimerDisplay();
 
     timer = setInterval(() => {
@@ -85,14 +91,10 @@ function startTimer() {
     }, 1000);
 }
 
-
-function updateTimerDisplay() {
-    document.getElementById("timer").textContent = `Time Left: ${timeLeft} seconds`;
-}
-
-//  calculate the winner
+// calculate the winner
 function calculateWinner() {
-    let winnerMessage;
+    let winnerMessage = "";
+
     if (player1Score > player2Score) {
         winnerMessage = "Player 1 wins!";
     } else if (player2Score > player1Score) {
@@ -100,20 +102,11 @@ function calculateWinner() {
     } else {
         winnerMessage = "It's a tie!";
     }
+
     document.getElementById("winner-message").textContent = winnerMessage;
-    document.getElementById("player1-score").textContent = `Player 1: ${player1Score} points`;
-    document.getElementById("player2-score").textContent = `Player 2: ${player2Score} points`;
     document.getElementById("winner-container").style.display = "block";
 }
 
-// Start the game by displaying the first question
+// Initial display of the first question
 displayQuestion(0);
 
-// Restart button event listener
-document.getElementById("restart-button").addEventListener("click", () => {
-    player1Score = 0;
-    player2Score = 0;
-    currentPlayer = 1;
-    questionsAnswered = 0;
-    displayQuestion(0);
-});
