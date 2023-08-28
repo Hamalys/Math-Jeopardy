@@ -1,4 +1,4 @@
-// Sample questions and answers 
+//  questions and answers 
 const questions = [
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
