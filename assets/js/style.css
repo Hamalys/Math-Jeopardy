@@ -1,4 +1,4 @@
-/* Resetting some default styles */
+
 body {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ header {
     padding: 20px 0;
 }
 
-/* Style for the game container */
+/*  game container */
 #game-container {
     display: flex;
     flex-wrap: wrap;
@@ -24,7 +24,7 @@ header {
     margin: 2% auto 0;
 }
 
-/* Style for category buttons */
+/* category buttons */
 .category-button {
     margin: 1%;
     padding: 2% 4%;
@@ -35,7 +35,7 @@ header {
     cursor: pointer;
 }
 
-/* Style for the winner container */
+/* winner container */
 #winner-container {
     display: none;
     flex-direction: column;
@@ -44,7 +44,7 @@ header {
     margin-top: 20px;
 }
 
-/* Style for the winner message */
+/* winner message */
 .winner-message {
     font-size: 24px;
     color: #fff;
@@ -95,7 +95,7 @@ header {
     color: red;
 }
 
-/* Restart button styles */
+/* Restart button */
 #restart-button {
     background-color: #555;
     color: #fff;
