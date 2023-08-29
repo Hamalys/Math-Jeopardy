@@ -1,132 +1,131 @@
-
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Raleway', sans-serif;
-    background-color: #cf2323;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+  background-color: #31cf23;
 }
 
 header {
-    background-color: #333;
-    text-align: center;
-    padding: 20px 0;
+  background-color: rgb(51, 51, 51);
+  text-align: center;
+  padding: 20px 0;
 }
 
 /*  game container */
 #game-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: #333;
-    border-radius: 10px;
-    padding: 2%;
-    max-width: 1200px;
-    margin: 2% auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #333;
+  border-radius: 10px;
+  padding: 2%;
+  max-width: 1200px;
+  margin: 2% auto 0;
 }
 
 /* category buttons */
 .category-button {
-    margin: 1%;
-    padding: 2% 4%;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  margin: 1%;
+  padding: 2% 4%;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* winner container */
 #winner-container {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 20px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
 }
 
 /* winner message */
 .winner-message {
-    font-size: 24px;
-    color: #fff;
-    margin-bottom: 20px;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 /* Feedback animations */
 @keyframes checkmark {
-    0% {
-        transform: scale(0);
-    }
+  0% {
+    transform: scale(0);
+  }
 
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes x {
-    0% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
 
-    25% {
-        transform: rotate(-10deg);
-    }
+  25% {
+    transform: rotate(-10deg);
+  }
 
-    50% {
-        transform: rotate(10deg);
-    }
+  50% {
+    transform: rotate(10deg);
+  }
 
-    75% {
-        transform: rotate(-10deg);
-    }
+  75% {
+    transform: rotate(-10deg);
+  }
 
-    100% {
-        transform: rotate(10deg);
-    }
+  100% {
+    transform: rotate(10deg);
+  }
 }
 
 /* animations elements */
 .correct-feedback {
-    animation: checkmark 0.3s ease forwards;
-    color: green;
+  animation: checkmark 0.3s ease forwards;
+  color: green;
 }
 
 .incorrect-feedback {
-    animation: x 0.3s ease forwards;
-    color: red;
+  animation: x 0.3s ease forwards;
+  color: red;
 }
 
 /* Restart button */
 #restart-button {
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 /* Button hover effect */
 .button {
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .button:hover {
-    background-color: #FFA500;
-    transform: scale(1.1);
+  background-color: #ffa500;
+  transform: scale(1.1);
 }
 
 /* Progress bar style */
 .progress-bar {
-    width: 0%;
-    height: 10px;
-    background-color: #FFD700;
-    transition: width 0.5s ease;
+  width: 0%;
+  height: 10px;
+  background-color: #ffd700;
+  transition: width 0.5s ease;
 }
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
-    #game-container {
-        flex-direction: column;
-        border-radius: 10px;
-    }
+  #game-container {
+    flex-direction: column;
+    border-radius: 10px;
+  }
 }
