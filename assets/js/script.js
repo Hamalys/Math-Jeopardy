@@ -29,6 +29,20 @@ let currentPlayer = 1;
 let questionsAnswered = 0;
 let timer;
 
+// click event 
+document.addEventListener("DOMContentLoaded", function () {
+    let startGameLink = document.getElementById("start-game-link");
+    let gameContainer = document.getElementById("game-container");
+    startGameLink.addEventListener("click", function () {
+        if (gameContainer.style.display === "none" || gameContainer.style.display === "") {
+            gameContainer.style.display = "block";
+        } else {
+            gameContainer.style.display = "none";
+        }
+    });
+});
+
+
 // display a question
 function displayQuestion(questionIndex) {
     const questionContainer = document.getElementById("game-container");
@@ -55,7 +69,7 @@ function displayQuestion(questionIndex) {
     submitButton.textContent = "Submit Answer";
     questionContainer.appendChild(submitButton);
 
-    startTimer(); 
+    startTimer();
 
     submitButton.addEventListener("click", () => {
         const userAnswer = parseInt(answerInput.value);
