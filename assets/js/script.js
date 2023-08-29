@@ -31,33 +31,9 @@ let timer;
 
 // click event 
 document.addEventListener("DOMContentLoaded", function () {
-    let startGameLink = document.getElementById("start-game-link");
-    let gameContainer = document.getElementById("game-container");
-    startGameLink.addEventListener("click", function () {
-        if (gameContainer.style.display === "none" || gameContainer.style.display === "") {
-            gameContainer.style.display = "block";
-        } else {
-            gameContainer.style.display = "none";
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const playLink = document.getElementById("play-link");
-    const benefitsList = document.getElementById("benefits-list");
-    playLink.addEventListener("click", function () {
-        if (benefitsList.style.display === "none" || benefitsList.style.display === "") {
-            benefitsList.style.display = "block";
-        } else {
-            benefitsList.style.display = "none";
-        }
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const playLink = document.getElementById("play-link");
-    const instructionsList = document.getElementById("instructions-list");
-
-    playLink.addEventListener("click", function () {
+    let seeInstructionsLink = document.getElementById("see-instructions-link");
+    let instructionsList = document.getElementById("instructions-list");
+    seeInstructionsLink.addEventListener("click", function () {
         if (instructionsList.style.display === "none" || instructionsList.style.display === "") {
             instructionsList.style.display = "block";
         } else {
@@ -65,10 +41,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-
-
-
+document.addEventListener("DOMContentLoaded", function () {
+    let playMathJeopardyLink = document.getElementById("play-math-jeopardy-link");
+    let gameContainer = document.getElementById("game-container");
+    playMathJeopardyLink.addEventListener("click", function () {
+        if (gameContainer.style.display === "none" || gameContainer.style.display === "") {
+            gameContainer.style.display = "block";
+        } else {
+            gameContainer.style.display = "none";
+        }
+    });
+});
 
 // display a question
 function displayQuestion(questionIndex) {
