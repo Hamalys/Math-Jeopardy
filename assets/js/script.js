@@ -42,6 +42,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const playLink = document.getElementById("play-link");
+    const benefitsList = document.getElementById("benefits-list");
+    playLink.addEventListener("click", function () {
+        if (benefitsList.style.display === "none" || benefitsList.style.display === "") {
+            benefitsList.style.display = "block";
+        } else {
+            benefitsList.style.display = "none";
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const playLink = document.getElementById("play-link");
+    const instructionsList = document.getElementById("instructions-list");
+
+    playLink.addEventListener("click", function () {
+        if (instructionsList.style.display === "none" || instructionsList.style.display === "") {
+            instructionsList.style.display = "block";
+        } else {
+            instructionsList.style.display = "none";
+        }
+    });
+});
+
+
+
+
 
 // display a question
 function displayQuestion(questionIndex) {
