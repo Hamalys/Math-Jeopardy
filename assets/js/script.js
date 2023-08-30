@@ -39,6 +39,26 @@ function updateScoreDisplay() {
     scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
 }
 
+ //uestions and answers;
+let questions = [
+    { question: "What is 9 multiplied by 7?", answer: 63 },
+    { question: "Calculate 12 divided by 4.", answer: 3 },
+    { question: "What is 12 plus 13?", answer: 25 },
+    { question: "Subtract 23 from 30.", answer: 7 },
+    { question: "What is 5 multiplied by 7?", answer: 35 },
+    { question: "Calculate 60 divided by 10.", answer: 6 },
+    { question: "What is 17 plus 13?", answer: 30 },
+    { question: "Subtract 40 from 50.", answer: 10 },
+    { question: "What is 8 multiplied by 7?", answer: 56 },
+    { question: "Calculate 84 divided by 12.", answer: 7 },
+    { question: "What is 13 plus 34?", answer: 47 },
+    { question: "Subtract 42 from 65.", answer: 23 },
+    { question: "What is 12 multiplied by 5?", answer: 60 },
+    { question: "Calculate 81 divided by 9.", answer: 9 },
+    { question: "What is 1 plus 4?", answer: 5 },
+    { question: "Subtract 12 from 33.", answer: 21 },
+];
+
 // Display a question
 function displayQuestion(questionIndex) {
     const questionContainer = gameContainer;
