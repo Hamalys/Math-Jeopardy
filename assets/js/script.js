@@ -11,12 +11,27 @@ const gameContainer = document.getElementById("game-container");
 const scoreElement = document.getElementById("score");
 const winnerMessageElement = document.getElementById("winner-message");
 
+
 // Event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("see-instructions-link").addEventListener("click", toggleInstructions);
-    document.getElementById("play-link").addEventListener("click", toggleGame);
-    document.getElementById("restart-button").addEventListener("click", restartGame);
-});
+    let seeInstructionsLink = document.getElementById("see-instructions-link");
+    if (seeInstructionsLink) {
+        seeInstructionsLink.addEventListener("click", toggleInstructions);
+    }
+        let playLink = document.getElementById("play-link");
+        if (playLink) {
+            playLink.addEventListener("click", toggleGame);
+        }
+
+        let restartButton = document.getElementById("restart-button");
+        if (restartButton) {
+            restartButton.addEventListener("click", restartGame);
+        }
+    });
+
+
+
+
 
 function toggleInstructions() {
     instructionsList.style.display = instructionsList.style.display === "none" ? "block" : "none";
