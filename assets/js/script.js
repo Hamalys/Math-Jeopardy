@@ -61,8 +61,8 @@ let questions = [
 
 // Display a question
 function displayQuestion(questionIndex) {
-    const questionContainer = gameContainer;
-    const question = questions[questionIndex];
+    let questionContainer = gameContainer;
+    let question = questions[questionIndex];
 
     questionContainer.innerHTML = `
         <h2>Arithmetic Questions</h2>
@@ -74,7 +74,7 @@ function displayQuestion(questionIndex) {
         <div id="timer">Time Left: 10 seconds</div>
     `;
 
-    // Handle correct/incorrect answers
+    // correct/incorrect answers
     const answerElement = document.createElement("div");
     answerElement.id = "answer-feedback";
     questionContainer.appendChild(answerElement);
@@ -159,7 +159,7 @@ function calculateWinner() {
     // Automatically restart the game after a delay
     setTimeout(() => {
         restartGame();
-    }, 3000); // Adjust the delay as needed
+    }, 3000); 
 }
 
 
@@ -170,9 +170,6 @@ function startNewQuestion() {
     displayQuestion(0);
 }
 
-// Your questions array should be defined here:
-const questions = [
-    // Define your questions here
-];
+
 
 
