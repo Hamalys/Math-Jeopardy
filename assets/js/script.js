@@ -1,27 +1,3 @@
-// Questions and answers
-let questions = [
-    { question: "What is 9 multiplied by 7?", answer: 63 },
-    { question: "Calculate 12 divided by 4.", answer: 3 },
-    { question: "What is 15 plus 18?", answer: 33 },
-    { question: "Subtract 42 from 60.", answer: 18 },
-    { question: "What is 9 multiplied by 7?", answer: 63 },
-    { question: "Calculate 12 divided by 4.", answer: 3 },
-    { question: "What is 12 plus 13?", answer: 25 },
-    { question: "Subtract 23 from 30.", answer: 7 },
-    { question: "What is 5 multiplied by 7?", answer: 35 },
-    { question: "Calculate 60 divided by 10.", answer: 6 },
-    { question: "What is 17 plus 13?", answer: 30 },
-    { question: "Subtract 40 from 50.", answer: 10 },
-    { question: "What is 9 multiplied by 7?", answer: 63 },
-    { question: "Calculate 12 divided by 4.", answer: 3 },
-    { question: "What is 15 plus 18?", answer: 33 },
-    { question: "Subtract 42 from 60.", answer: 18 },
-    { question: "What is 12 multiplied by 5?", answer: 60 },
-    { question: "Calculate 81 divided by 9.", answer: 9 },
-    { question: "What is 1 plus 4?", answer: 5 },
-    { question: "Subtract 12 from 33.", answer: 21 },
-];
-
 // Initialize variables
 let player1Score = 0;
 let player2Score = 0;
@@ -29,33 +5,43 @@ let currentPlayer = 1;
 let questionsAnswered = 0;
 let timer;
 
-// click event 
+// DOM elements
+const instructionsList = document.getElementById("instructions-list");
+const gameContainer = document.getElementById("game-container");
+const scoreElement = document.getElementById("score");
+const winnerMessageElement = document.getElementById("winner-message");
+
+// Event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    let seeInstructionsLink = document.getElementById("see-instructions-link");
-    let instructionsList = document.getElementById("instructions-list");
-    seeInstructionsLink.addEventListener("click", function () {
-        if (instructionsList.style.display === "none" || instructionsList.style.display === "") {
-            instructionsList.style.display = "block";
-        } else {
-            instructionsList.style.display = "none";
-        }
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    let playMathJeopardyLink = document.getElementById("play-math-jeopardy-link");
-    let gameContainer = document.getElementById("game-container");
-    playMathJeopardyLink.addEventListener("click", function () {
-        if (gameContainer.style.display === "none" || gameContainer.style.display === "") {
-            gameContainer.style.display = "block";
-        } else {
-            gameContainer.style.display = "none";
-        }
-    });
+    document.getElementById("see-instructions-link").addEventListener("click", toggleInstructions);
+    document.getElementById("play-link").addEventListener("click", toggleGame);
+    document.getElementById("restart-button").addEventListener("click", restartGame);
 });
 
-// display a question
+function toggleInstructions() {
+    instructionsList.style.display = instructionsList.style.display === "none" ? "block" : "none";
+}
+
+function toggleGame() {
+    gameContainer.style.display = gameContainer.style.display === "none" ? "block" : "none";
+    startNewQuestion();
+}
+
+function restartGame() {
+    player1Score = 0;
+    player2Score = 0;
+    currentPlayer = 1;
+    winnerMessageElement.style.display = "none";
+    startNewQuestion();
+}
+
+function updateScoreDisplay() {
+    scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
+}
+
+// Display a question
 function displayQuestion(questionIndex) {
-    const questionContainer = document.getElementById("game-container");
+    const questionContainer = gameContainer;
     const question = questions[questionIndex];
 
     questionContainer.innerHTML = `
@@ -65,17 +51,19 @@ function displayQuestion(questionIndex) {
                 <p>Question: ${question.question}</p>
             </li>
         </ul>
-        <div id="timer">Time Left: 10 seconds</div> <!-- Added timer display -->
+        <div id="timer">Time Left: 10 seconds</div>
     `;
 
     // Handle correct/incorrect answers
-    let answerElement = document.createElement("div");
+    const answerElement = document.createElement("div");
     answerElement.id = "answer-feedback";
     questionContainer.appendChild(answerElement);
-    let answerInput = document.createElement("input");
+
+    const answerInput = document.createElement("input");
     answerInput.type = "text";
     questionContainer.appendChild(answerInput);
-    let submitButton = document.createElement("button");
+
+    const submitButton = document.createElement("button");
     submitButton.textContent = "Submit Answer";
     questionContainer.appendChild(submitButton);
 
@@ -131,7 +119,7 @@ function startTimer() {
     }, 1000);
 }
 
-// calculate the winner
+// Calculate the winner
 function calculateWinner() {
     let winnerMessage = "";
 
@@ -143,10 +131,28 @@ function calculateWinner() {
         winnerMessage = "It's a tie!";
     }
 
-    document.getElementById("winner-message").textContent = winnerMessage;
-    document.getElementById("winner-container").style.display = "block";
+    winnerMessageElement.textContent = winnerMessage;
+    winnerMessageElement.style.display = "block";
+
+
+
+    // Automatically restart the game after a delay
+    setTimeout(() => {
+        restartGame();
+    }, 3000); // Adjust the delay as needed
 }
 
-// Initial display of the first question
-displayQuestion(0);
+
+// Call this function to start a new question
+function startNewQuestion() {
+    questionsAnswered = 0;
+    updateScoreDisplay();
+    displayQuestion(0);
+}
+
+// Your questions array should be defined here:
+const questions = [
+    // Define your questions here
+];
+
 
