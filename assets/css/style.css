@@ -15,15 +15,9 @@ main {
     display: flex;
     justify-content: space-between;
 }
-
-/* Adjust the width of each section */
 #instructions {
     width: 45%;
 }
-#game-container {
-    width: 45%;
-}
-
 /*  game container */
 #game-container {
     display: flex;
