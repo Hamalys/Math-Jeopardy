@@ -1,39 +1,67 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Math Jeopardy Game
 
-Welcome,
+This is a straightforward web-based Math's Jeopardy game where players can test their arithmetic abilities. The players take turns answering mathematical questions and earning points for their correct responses. At the conclusion of the game, the winner is the player with the most points.
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+How to Play
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **July 26th, 2023**
+1. Instructions:
 
-## Codeanywhere Reminders
+   - To begin the game, click "Click here to play Math Jeopardy"  
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+   - Players answer mathematical queries in turn.  
 
-`python3 -m http.server`
+   - Respond within the time limit provided.  
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+   - Correct responses are worthy points.  
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+2. Game Rules:
 
-`http_server`
+ -The game is comprised of a series of mathematical queries.  
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+-Players must respond to the queries within the time frame given to them.  
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+3.Winning:
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+- The winner is the player with the most points at the end of all queries.  
 
-To log into the Heroku toolbelt CLI:
+- In the event of a tie, the contest will declare a tie.  
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+Game Features  
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- Each question is displayed individually.  
 
----
+- A timer tallies down the amount of time allowed to answer each question.
 
-Happy coding!
+- Correct and incorrect responses are provided with animated feedback.
+
+- The game maintains the score for each participant.  
+
+-The winner is declared at the end of the game.  
+
+   git clone <https://github.com/hamalys/math-jeopardy.git>
+
+Technologies Used
+
+- HTML
+
+- CSS
+
+- JavaScript
+
+Project Structure  
+
+- `index.html`: The main HTML file that defines the game's structure and content.
+
+- `style.css`: The CSS file that styles the game.
+
+- `script.js`: The JavaScript file that contains the game logic and question data.
+
+Acknowledgments
+
+This project was designed to be a challenging and entertaining method to improve math skills for you, your friends, and your family. You are free to use, modify, and spread it!  
+
+Author
+
+ Hamalys Akyamba
+
+- GitHub: [Your GitHub Profile] (<https://github.com/hamalys>)
