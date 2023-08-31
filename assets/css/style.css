@@ -86,12 +86,12 @@ header {
 /* animations elements */
 .correct-feedback {
     animation: checkmark 0.3s ease forwards;
-    color: green;
+    color: white;
 }
 
 .incorrect-feedback {
     animation: x 0.3s ease forwards;
-    color: red;
+    color: white;
 }
 
 /* Restart button */
