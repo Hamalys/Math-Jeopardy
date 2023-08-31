@@ -10,6 +10,19 @@ header {
     text-align: center;
     padding: 20px 0;
 }
+/* Ensure the sections are displayed as flex containers */
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Adjust the width of each section */
+#instructions {
+    width: 45%;
+}
+#game-container {
+    width: 45%;
+}
 
 /*  game container */
 #game-container {
@@ -19,7 +32,7 @@ header {
     background-color: #b02323;
     border-radius: 10px;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 45%;
     margin: 2% auto 0;
 }
 
