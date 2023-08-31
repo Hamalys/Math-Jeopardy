@@ -10,11 +10,12 @@ header {
     text-align: center;
     padding: 20px 0;
 }
-/* Ensure the sections are displayed as flex containers */
+/*  flex containers */
 main {
     display: flex;
     justify-content: space-between;
 }
+
 #instructions {
     width: 45%;
 }

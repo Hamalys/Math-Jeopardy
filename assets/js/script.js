@@ -53,7 +53,7 @@ function updateScoreDisplay() {
     scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
 }
 
- //uestions and answers;
+ //questions and answers;
 let questions = [
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
@@ -177,7 +177,7 @@ function calculateWinner() {
 }
 
 
-// Call this function to start a new question
+// function to start a new question
 function startNewQuestion() {
     questionsAnswered = 0;
     updateScoreDisplay();
