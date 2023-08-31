@@ -64,4 +64,4 @@ Author
 
  Hamalys Akyamba
 
-- GitHub: [Your GitHub Profile] (<https://github.com/hamalys>)
+- GitHub:(<https://github.com/hamalys>)
