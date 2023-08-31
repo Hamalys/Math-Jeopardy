@@ -38,7 +38,7 @@ Game Features
 
 -The winner is declared at the end of the game.  
 
-   git clone <https://github.com/hamalys/math-jeopardy.git>
+   github <https://github.com/hamalys/math-jeopardy.git>
 
 Technologies Used
 
