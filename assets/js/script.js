@@ -23,20 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
         restartButton.addEventListener("click", restartGame);
     }
 });
-document.addEventListener("DOMContentLoaded", function () {
-        let playLink = document.getElementById("play-link");
-        if (playLink) {
-            playLink.addEventListener("click", toggleGame);
-        }
-        let restartButton = document.getElementById("restart-button");
-        if (restartButton) {
-            restartButton.addEventListener("click", restartGame);
-        }
-    });
 
-    instructionsList.style.display = instructionsList.style.display === "none" ? "block" : "none";
-
-
+function toggleInstructionsAndGame() {
+    const instructionsList = document.getElementById("instructions-list");
+    const gameContainer = document.getElementById("game-container");
+    if (instructionsList.style.display === "none") {
+        instructionsList.style.display = "block";
+        gameContainer.style.display = "none"; 
+    } else {
+        instructionsList.style.display = "none";
+        gameContainer.style.display = "block"; 
+        startNewQuestion();
+    }
+}
 function toggleGame() {
     gameContainer.style.display = gameContainer.style.display === "none" ? "block" : "none";
     startNewQuestion();
