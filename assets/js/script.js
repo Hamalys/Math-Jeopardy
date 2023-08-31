@@ -6,36 +6,36 @@ let questionsAnswered = 0;
 let timer;
 
 // DOM elements
-const instructionsList = document.getElementById("instructions-list");
-const gameContainer = document.getElementById("game-container");
-const scoreElement = document.getElementById("score");
-const winnerMessageElement = document.getElementById("winner-message");
+let instructionsList = document.getElementById("instructions-list");
+let gameContainer = document.getElementById("game-container");
+let scoreElement = document.getElementById("score");
+let winnerMessageElement = document.getElementById("winner-message");
 
 
 // Event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    let seeInstructionsLink = document.getElementById("see-instructions-link");
-    if (seeInstructionsLink) {
-        seeInstructionsLink.addEventListener("click", toggleInstructions);
+    let playLink = document.getElementById("play-link");
+    if (playLink) {
+        playLink.addEventListener("click", toggleInstructionsAndGame);
     }
+    let restartButton = document.getElementById("restart-button");
+    if (restartButton) {
+        restartButton.addEventListener("click", restartGame);
+    }
+});
+document.addEventListener("DOMContentLoaded", function () {
         let playLink = document.getElementById("play-link");
         if (playLink) {
             playLink.addEventListener("click", toggleGame);
         }
-
         let restartButton = document.getElementById("restart-button");
         if (restartButton) {
             restartButton.addEventListener("click", restartGame);
         }
     });
 
-
-
-
-
-function toggleInstructions() {
     instructionsList.style.display = instructionsList.style.display === "none" ? "block" : "none";
-}
+
 
 function toggleGame() {
     gameContainer.style.display = gameContainer.style.display === "none" ? "block" : "none";
