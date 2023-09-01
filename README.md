@@ -38,7 +38,7 @@ Game Features
 
 -The winner is declared at the end of the game.  
 
-   github <https://github.com/hamalys/math-jeopardy.git>
+   github <https://github.com/Hamalys/Math-Jeopardy>
 
 Technologies Used
 
@@ -61,7 +61,6 @@ Acknowledgments
 This project was designed to be a challenging and entertaining method to improve math skills for you, your friends, and your family. You are free to use, modify, and spread it!  
 
 Author
+Hamalys Akyamba
 
- Hamalys Akyamba
-
-- GitHub: [Your GitHub Profile] (<https://github.com/hamalys>)
+<https://github.com/Hamalys/Math-Jeopardy>
