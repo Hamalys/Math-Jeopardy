@@ -77,6 +77,9 @@ let questions = [
 function displayQuestion(questionIndex) {
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
+    if (questionsAnswered>3) {endgame();
+    }
+    else {questionsAnswered++;
 
     questionContainer.innerHTML = `
         <h2>Arithmetic Questions</h2>
@@ -124,8 +127,11 @@ function displayQuestion(questionIndex) {
             setTimeout(calculateWinner, 2000);
         }
     });
+}}
+function endgame(){
+    console.log('game over!!!')
+    console.log(player1Score)
 }
-
 // Function to start the timer
 function startTimer() {
     clearInterval(timer);
