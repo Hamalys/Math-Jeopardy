@@ -128,6 +128,51 @@ function displayQuestion(questionIndex) {
         }
     });
 }}
+
+
+function startGame() {
+    player1Score = 0;
+    player2Score = 0;
+    currentPlayer = 1;
+    questionsAnswered = 0;
+    winnerMessageElement.style.display = "none";
+    displayQuestion(0);
+}
+
+// Event listeners
+document.addEventListener("DOMContentLoaded", function () {
+    let playLink = document.getElementById("play-link");
+    if (playLink) {
+        playLink.addEventListener("click", startGame); 
+    }
+    let restartButton = document.getElementById("restart-button");
+    if (restartButton) {
+        restartButton.addEventListener("click", startGame); 
+    }
+});
+
+// Display a question
+function displayQuestion(questionIndex) {
+        let questionContainer = gameContainer;
+        let question = questions[questionIndex];
+        if (questionsAnswered > 3) {
+            endgame();
+        }
+        else {
+            questionsAnswered++;
+
+            questionContainer.innerHTML = `
+        <h2>Arithmetic Questions</h2>
+        <ul>
+            <li>
+                <p>Question: ${question.question}</p>
+            </li>
+        </ul>
+        <div id="timer">Time Left: 10 seconds</div>
+    `;
+
+        
+
 function endgame(){
     console.log('game over!!!')
     console.log(player1Score)
