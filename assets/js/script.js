@@ -57,23 +57,22 @@ let submitButton;  // Declare submitButton outside the function
 function displayQuestion(questionIndex) {
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
-
     if (questionsAnswered > 3) {
         endgame();
     } else {
         questionsAnswered++;
 
-        questionContainer.innerHTML = '';  // Clear the container before appending new content
+        questionContainer.innerHTML = '';
 
         questionContainer.innerHTML += `
-            <h2>Arithmetic Questions</h2>
-            <ul>
-                <li>
-                    <p>Question: ${question.question}</p>
-                </li>
-            </ul>
-            <div id="timer">Time Left: 10 seconds</div>
-        `;
+        <h2>Arithmetic Questions</h2>
+        <ul>
+            <li>
+                <p>Question: ${question.question}</p>
+            </li>
+        </ul>
+        <div id="timer">Time Left: 10 seconds</div>
+    `;
 
         // correct/incorrect answers
         const answerElement = document.createElement("div");
