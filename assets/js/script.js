@@ -52,7 +52,7 @@ function startGame() {
 }
 
 // Display a question
-let submitButton;  // Declare submitButton outside the function
+let submitButton;  
 
 function displayQuestion(questionIndex) {
     let questionContainer = gameContainer;
