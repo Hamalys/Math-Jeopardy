@@ -3,6 +3,7 @@ let player1Score = 0;
 let player2Score = 0;
 let currentPlayer = 1;
 let questionsAnswered = 0;
+let roundsPlayed = 0;
 let timer;
 
 // DOM elements
@@ -47,12 +48,12 @@ function startGame() {
     player2Score = 0;
     currentPlayer = 1;
     questionsAnswered = 0;
+    roundsPlayed = 0; // Added variable to track rounds played
     winnerMessageElement.style.display = "none";
     displayQuestion(0);
 }
 
 // Display a question
-
 let questions = [
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
@@ -90,22 +91,6 @@ function displayQuestion(questionIndex) {
             </ul>
             <div id="timer">Time Left: 10 seconds</div>
         `;
-
-        // correct/incorrect answers
-        const answerElement = document.createElement("div");
-        answerElement.id = "answer-feedback";
-        questionContainer.appendChild(answerElement);
-
-        const answerInput = document.createElement("input");
-        answerInput.type = "text";
-        questionContainer.appendChild(answerInput);
-
-        const submitButton = document.createElement("button");
-        submitButton.textContent = "Submit Answer";
-        questionContainer.appendChild(submitButton);
-
-        startTimer();
-
         submitButton.addEventListener("click", () => {
             const userAnswer = parseInt(answerInput.value);
 
@@ -127,12 +112,63 @@ function displayQuestion(questionIndex) {
             if (questionsAnswered < questions.length) {
                 setTimeout(() => displayQuestion(questionsAnswered), 2000);
             } else {
-                setTimeout(calculateWinner, 2000);
+                endRound();
             }
         });
     }
-}
 
+    // Function to end a round
+    function endRound() {
+        roundsPlayed++;
+
+        if (roundsPlayed < 3) {
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            questionsAnswered = 0;
+            setTimeout(() => displayQuestion(0), 2000);
+        } else {
+            setTimeout(calculateWinner, 2000);
+        }
+    }
+    // correct/incorrect answers
+    const answerElement = document.createElement("div");
+    answerElement.id = "answer-feedback";
+    questionContainer.appendChild(answerElement);
+
+    const answerInput = document.createElement("input");
+    answerInput.type = "text";
+    questionContainer.appendChild(answerInput);
+
+    const submitButton = document.createElement("button");
+    submitButton.textContent = "Submit Answer";
+    questionContainer.appendChild(submitButton);
+
+    startTimer();
+
+    submitButton.addEventListener("click", () => {
+        const userAnswer = parseInt(answerInput.value);
+
+        if (!isNaN(userAnswer) && userAnswer === question.answer) {
+            answerElement.textContent = "Correct!";
+            answerElement.classList.add("correct-feedback");
+            if (currentPlayer === 1) {
+                player1Score++;
+            } else {
+                player2Score++;
+            }
+        } else {
+            answerElement.textContent = "Incorrect!";
+            answerElement.classList.add("incorrect-feedback");
+        }
+
+        questionsAnswered++;
+
+        if (questionsAnswered < questions.length) {
+            setTimeout(() => displayQuestion(questionsAnswered), 2000);
+        } else {
+            setTimeout(calculateWinner, 2000);
+        }
+    });
+}
 // Function to end the game
 function endgame() {
     console.log('game over!!!');
