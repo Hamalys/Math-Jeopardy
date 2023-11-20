@@ -25,18 +25,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Function to toggle instructions and game display
+// Function to toggle instructions and game display
 function toggleInstructionsAndGame() {
     const instructionsList = document.getElementById("instructions-list");
+    const instructionsDisplayStyle = window.getComputedStyle(instructionsList).display;
 
-    if (instructionsList.style.display === "none") {
+    if (instructionsDisplayStyle === "none") {
         instructionsList.style.display = "block";
         gameContainer.style.display = "none";
     } else {
         instructionsList.style.display = "none";
         gameContainer.style.display = "block";
-        startNewQuestion();
+        startGame();
     }
 }
+
 
 // Function to start the game
 function startGame() {
@@ -49,6 +52,26 @@ function startGame() {
 }
 
 // Display a question
+
+let questions = [
+    { question: "What is 9 multiplied by 7?", answer: 63 },
+    { question: "Calculate 12 divided by 4.", answer: 3 },
+    { question: "What is 12 plus 13?", answer: 25 },
+    { question: "Subtract 23 from 30.", answer: 7 },
+    { question: "What is 5 multiplied by 7?", answer: 35 },
+    { question: "Calculate 60 divided by 10.", answer: 6 },
+    { question: "What is 17 plus 13?", answer: 30 },
+    { question: "Subtract 40 from 50.", answer: 10 },
+    { question: "What is 8 multiplied by 7?", answer: 56 },
+    { question: "Calculate 84 divided by 12.", answer: 7 },
+    { question: "What is 13 plus 34?", answer: 47 },
+    { question: "Subtract 42 from 65.", answer: 23 },
+    { question: "What is 12 multiplied by 5?", answer: 60 },
+    { question: "Calculate 81 divided by 9.", answer: 9 },
+    { question: "What is 1 plus 4?", answer: 5 },
+    { question: "Subtract 12 from 33.", answer: 21 },
+];
+
 function displayQuestion(questionIndex) {
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
