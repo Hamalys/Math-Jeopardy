@@ -29,10 +29,10 @@ function toggleInstructionsAndGame() {
     const gameContainer = document.getElementById("game-container");
     if (instructionsList.style.display === "none") {
         instructionsList.style.display = "block";
-        gameContainer.style.display = "none"; 
+        gameContainer.style.display = "none";
     } else {
         instructionsList.style.display = "none";
-        gameContainer.style.display = "block"; 
+        gameContainer.style.display = "block";
         startNewQuestion();
     }
 }
@@ -53,7 +53,7 @@ function updateScoreDisplay() {
     scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
 }
 
- //questions and answers;
+//questions and answers;
 let questions = [
     { question: "What is 9 multiplied by 7?", answer: 63 },
     { question: "Calculate 12 divided by 4.", answer: 3 },
@@ -77,11 +77,13 @@ let questions = [
 function displayQuestion(questionIndex) {
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
-    if (questionsAnswered>3) {endgame();
+    if (questionsAnswered > 3) {
+        endgame();
     }
-    else {questionsAnswered++;
+    else {
+        questionsAnswered++;
 
-    questionContainer.innerHTML = `
+        questionContainer.innerHTML = `
         <h2>Arithmetic Questions</h2>
         <ul>
             <li>
@@ -91,43 +93,44 @@ function displayQuestion(questionIndex) {
         <div id="timer">Time Left: 10 seconds</div>
     `;
 
-    // correct/incorrect answers
-    const answerElement = document.createElement("div");
-    answerElement.id = "answer-feedback";
-    questionContainer.appendChild(answerElement);
+        // correct/incorrect answers
+        const answerElement = document.createElement("div");
+        answerElement.id = "answer-feedback";
+        questionContainer.appendChild(answerElement);
 
-    const answerInput = document.createElement("input");
-    answerInput.type = "text";
-    questionContainer.appendChild(answerInput);
+        const answerInput = document.createElement("input");
+        answerInput.type = "text";
+        questionContainer.appendChild(answerInput);
 
-    const submitButton = document.createElement("button");
-    submitButton.textContent = "Submit Answer";
-    questionContainer.appendChild(submitButton);
+        const submitButton = document.createElement("button");
+        submitButton.textContent = "Submit Answer";
+        questionContainer.appendChild(submitButton);
 
-    startTimer();
+        startTimer();
 
-    submitButton.addEventListener("click", () => {
-        const userAnswer = parseInt(answerInput.value);
-        if (!isNaN(userAnswer) && userAnswer === question.answer) {
-            answerElement.textContent = "Correct!";
-            answerElement.classList.add("correct-feedback");
-            if (currentPlayer === 1) {
-                player1Score++;
+        submitButton.addEventListener("click", () => {
+            const userAnswer = parseInt(answerInput.value);
+            if (!isNaN(userAnswer) && userAnswer === question.answer) {
+                answerElement.textContent = "Correct!";
+                answerElement.classList.add("correct-feedback");
+                if (currentPlayer === 1) {
+                    player1Score++;
+                } else {
+                    player2Score++;
+                }
             } else {
-                player2Score++;
+                answerElement.textContent = "Incorrect!";
+                answerElement.classList.add("incorrect-feedback");
             }
-        } else {
-            answerElement.textContent = "Incorrect!";
-            answerElement.classList.add("incorrect-feedback");
-        }
-        questionsAnswered++;
-        if (questionsAnswered < questions.length) {
-            setTimeout(() => displayQuestion(questionsAnswered), 2000);
-        } else {
-            setTimeout(calculateWinner, 2000);
-        }
-    });
-}}
+            questionsAnswered++;
+            if (questionsAnswered < questions.length) {
+                setTimeout(() => displayQuestion(questionsAnswered), 2000);
+            } else {
+                setTimeout(calculateWinner, 2000);
+            }
+        });
+    }
+}
 
 
 function startGame() {
@@ -143,25 +146,25 @@ function startGame() {
 document.addEventListener("DOMContentLoaded", function () {
     let playLink = document.getElementById("play-link");
     if (playLink) {
-        playLink.addEventListener("click", startGame); 
+        playLink.addEventListener("click", startGame);
     }
     let restartButton = document.getElementById("restart-button");
     if (restartButton) {
-        restartButton.addEventListener("click", startGame); 
+        restartButton.addEventListener("click", startGame);
     }
 });
 
 // Display a question
 function displayQuestion(questionIndex) {
-        let questionContainer = gameContainer;
-        let question = questions[questionIndex];
-        if (questionsAnswered > 3) {
-            endgame();
-        }
-        else {
-            questionsAnswered++;
+    let questionContainer = gameContainer;
+    let question = questions[questionIndex];
+    if (questionsAnswered > 3) {
+        endgame();
+    }
+    else {
+        questionsAnswered++;
 
-            questionContainer.innerHTML = `
+        questionContainer.innerHTML = `
         <h2>Arithmetic Questions</h2>
         <ul>
             <li>
@@ -171,70 +174,67 @@ function displayQuestion(questionIndex) {
         <div id="timer">Time Left: 10 seconds</div>
     `;
 
-        
 
-function endgame(){
-    console.log('game over!!!')
-    console.log(player1Score)
-}
-// Function to start the timer
-function startTimer() {
-    clearInterval(timer);
-    let timeLeft = 10;
 
-    function updateTimerDisplay() {
-        document.getElementById("timer").textContent = `Time Left: ${timeLeft} seconds`;
-    }
-
-    updateTimerDisplay();
-
-    timer = setInterval(() => {
-        timeLeft--;
-        updateTimerDisplay();
-        if (timeLeft === 0) {
-            clearInterval(timer);
-            currentPlayer = currentPlayer === 1 ? 2 : 1;
-            questionsAnswered++;
-            if (questionsAnswered < questions.length) {
-                setTimeout(() => displayQuestion(questionsAnswered), 2000);
-            } else {
-                setTimeout(calculateWinner, 2000);
-            }
+        function endgame() {
+            console.log('game over!!!');
+            console.log(player1Score);
         }
-    }, 1000);
-}
+        // Function to start the timer
+        function startTimer() {
+            clearInterval(timer);
+            let timeLeft = 10;
 
-// Calculate the winner
-function calculateWinner() {
-    let winnerMessage = "";
+            function updateTimerDisplay() {
+                document.getElementById("timer").textContent = `Time Left: ${timeLeft} seconds`;
+            }
 
-    if (player1Score > player2Score) {
-        winnerMessage = "Player 1 wins!";
-    } else if (player2Score > player1Score) {
-        winnerMessage = "Player 2 wins!";
-    } else {
-        winnerMessage = "It's a tie!";
-    }
+            updateTimerDisplay();
 
-    winnerMessageElement.textContent = winnerMessage;
-    winnerMessageElement.style.display = "block";
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft === 0) {
+                    clearInterval(timer);
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
+                    questionsAnswered++;
+                    if (questionsAnswered < questions.length) {
+                        setTimeout(() => displayQuestion(questionsAnswered), 2000);
+                    } else {
+                        setTimeout(calculateWinner, 2000);
+                    }
+                }
+            }, 1000);
+        }
+
+        // Calculate the winner
+        function calculateWinner() {
+            let winnerMessage = "";
+
+            if (player1Score > player2Score) {
+                winnerMessage = "Player 1 wins!";
+            } else if (player2Score > player1Score) {
+                winnerMessage = "Player 2 wins!";
+            } else {
+                winnerMessage = "It's a tie!";
+            }
+
+            winnerMessageElement.textContent = winnerMessage;
+            winnerMessageElement.style.display = "block";
 
 
 
-    // Automatically restart the game after a delay
-    setTimeout(() => {
-        restartGame();
-    }, 3000); 
-}
+            // Automatically restart the game after a delay
+            setTimeout(() => {
+                restartGame();
+            }, 3000);
+        }
 
 
-// function to start a new question
-function startNewQuestion() {
-    questionsAnswered = 0;
-    updateScoreDisplay();
-    displayQuestion(0);
-}
-
-
-
+        // function to start a new question
+        function startNewQuestion() {
+            questionsAnswered = 0;
+            updateScoreDisplay();
+            displayQuestion(0);
+        }
 
