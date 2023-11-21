@@ -165,7 +165,7 @@ function endRound() {
         if (player1Score + player2Score < 4) {
             currentPlayer = currentPlayer === 1 ? 2 : 1;
             questionsAnswered = 0;
-            setTimeout(() => displayQuestion(0), 2000);
+            setTimeout(displayRandomQuestion, 2000);
         } else {
             setTimeout(calculateWinner, 2000);
         }
@@ -201,7 +201,6 @@ function startTimer() {
         }
     }, 1000);
 }
-
 // Function to calculate the winner
 function calculateWinner() {
     let winnerMessage = "";
@@ -216,8 +215,6 @@ function calculateWinner() {
 
     winnerMessageElement.textContent = winnerMessage;
     winnerMessageElement.style.display = "block";
-
-    // Automatically restart the game after a delay
     setTimeout(() => {
         restartGame();
     }, 3000);
