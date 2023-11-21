@@ -6,12 +6,35 @@ let questionsAnswered = 0;
 let roundsPlayed = 0;
 let timer;
 
+
+//questions and answers;
+let questions = [
+    { question: "What is 9 multiplied by 7?", answer: 63 },
+    { question: "Calculate 12 divided by 4.", answer: 3 },
+    { question: "What is 12 plus 13?", answer: 25 },
+    { question: "Subtract 23 from 30.", answer: 7 },
+    { question: "What is 5 multiplied by 7?", answer: 35 },
+    { question: "Calculate 60 divided by 10.", answer: 6 },
+    { question: "What is 17 plus 13?", answer: 30 },
+    { question: "Subtract 40 from 50.", answer: 10 },
+    { question: "What is 8 multiplied by 7?", answer: 56 },
+    { question: "Calculate 84 divided by 12.", answer: 7 },
+    { question: "What is 13 plus 34?", answer: 47 },
+    { question: "Subtract 42 from 65.", answer: 23 },
+    { question: "What is 12 multiplied by 5?", answer: 60 },
+    { question: "Calculate 81 divided by 9.", answer: 9 },
+    { question: "What is 1 plus 4?", answer: 5 },
+    { question: "Subtract 12 from 33.", answer: 21 },
+];
+
+
 // DOM elements
 let gameContainer = document.getElementById("game-container");
 let scoreElement = document.getElementById("score");
 let winnerMessageElement = document.getElementById("winner-message");
 
 // Event listeners
+
 document.addEventListener("DOMContentLoaded", function () {
     let playLink = document.getElementById("play-link");
     let restartButton = document.getElementById("restart-button");
@@ -48,11 +71,17 @@ function startGame() {
     questionsAnswered = 0;
     roundsPlayed = 0;
     winnerMessageElement.style.display = "none";
-    displayQuestion(0);
+
+    // Check if there are questions before displaying the first one
+    if (questions.length > 0) {
+        displayQuestion(0);
+    } else {
+        console.error("No questions available. Please add questions to the 'questions' array.");
+    }
 }
 
 // Display a question
-let submitButton;  
+let submitButton;
 
 function displayQuestion(questionIndex) {
     let questionContainer = gameContainer;
