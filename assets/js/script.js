@@ -6,7 +6,6 @@ let questionsAnswered = 0;
 let roundsPlayed = 0;
 let timer;
 
-
 //questions and answers;
 let questions = [
     { question: "What is 9 multiplied by 7?", answer: 63 },
@@ -32,12 +31,11 @@ let gameContainer = document.getElementById("game-container");
 let scoreElement = document.getElementById("score");
 let winnerMessageElement = document.getElementById("winner-message");
 
-// Event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    let playLink = document.getElementById("play-link");
-    let restartButton = document.getElementById("restart-button");
-    let startNewGameButton = document.getElementById("start-new-game-button");
-    let cancelGameButton = document.getElementById("cancel-game-button");
+    const playLink = document.getElementById("play-link");
+    const restartButton = document.getElementById("restart-button");
+    const startNewGameButton = document.getElementById("start-new-game-button");
+    const cancelGameButton = document.getElementById("cancel-game-button");
 
     if (playLink) {
         playLink.addEventListener("click", toggleInstructionsAndGame);
@@ -56,29 +54,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function startNewGame() {
-    player1Score = 0;
-    player2Score = 0;
-    currentPlayer = 1;
-    questionsAnswered = 0;
-    roundsPlayed = 0;
-    winnerMessageElement.style.display = "none";
-    toggleInstructionsAndGame();
-}
-
-// Function to toggle instructions and game display
-let submitButton;
 function toggleInstructionsAndGame() {
     const instructionsList = document.getElementById("instructions-list");
-    const instructionsDisplayStyle = window.getComputedStyle(instructionsList).display;
+    const gameContainer = document.getElementById("game-container");
 
-    if (instructionsDisplayStyle === "none") {
-        instructionsList.style.display = "block";
-        gameContainer.style.display = "none";
+    if (instructionsList && gameContainer) {
+        const instructionsDisplayStyle = window.getComputedStyle(instructionsList).display;
+
+        if (instructionsDisplayStyle === "none") {
+            instructionsList.style.display = "block";
+            gameContainer.style.display = "none";
+        } else {
+            instructionsList.style.display = "none";
+            gameContainer.style.display = "block";
+            startGame();
+        }
     } else {
-        instructionsList.style.display = "none";
-        gameContainer.style.display = "block";
-        startGame();
+        console.error("Could not find instructionsList or gameContainer element.");
     }
 }
 
@@ -99,7 +91,7 @@ function startGame() {
 }
 
 function displayRandomQuestion() {
-    // Randomly select a question
+
     const randomIndex = Math.floor(Math.random() * questions.length);
     displayQuestion(randomIndex);
 }
@@ -112,6 +104,7 @@ let player2IncorrectAnswers = [];
 
 
 function displayQuestion(questionIndex) {
+    let submitButton = document.createElement("button");
     let inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
@@ -189,15 +182,15 @@ function displayQuestion(questionIndex) {
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
-                // Disable the input and submit button during the delay
+                
                 answerInput.disabled = true;
                 submitButton.disabled = true;
 
                 setTimeout(() => {
                     answerInput.disabled = false;
                     submitButton.disabled = false;
-                    answerInput.value = ''; // Clear the input field
-                    answerInput.focus(); // Focus on the input field
+                    answerInput.value = ''; 
+                    answerInput.focus(); 
                 }, 2000);
 
                 setTimeout(displayRandomQuestion, 2000);
@@ -211,8 +204,6 @@ function displayQuestion(questionIndex) {
 
     // Automatically focus on the input field after displaying the question
     answerInput.focus();
-
-    // Automatically submit the answer after the user finishes typing
     answerInput.addEventListener("blur", () => {
         if (inputChanged) {
             submitButton.click();
