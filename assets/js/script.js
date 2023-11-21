@@ -212,12 +212,15 @@ function endRound() {
             questionsAnswered = 0;
             setTimeout(displayRandomQuestion, 2000);
         } else {
+            clearInterval(timer);  // Clear the timer here
             setTimeout(calculateWinner, 2000);
         }
     } else {
+        clearInterval(timer);  // Clear the timer here
         setTimeout(calculateWinner, 2000);
     }
 }
+
 // Function to start the timer
 function startTimer() {
     clearInterval(timer);
