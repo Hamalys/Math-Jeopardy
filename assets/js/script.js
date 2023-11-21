@@ -33,10 +33,11 @@ let scoreElement = document.getElementById("score");
 let winnerMessageElement = document.getElementById("winner-message");
 
 // Event listeners
-
 document.addEventListener("DOMContentLoaded", function () {
     let playLink = document.getElementById("play-link");
     let restartButton = document.getElementById("restart-button");
+    let startNewGameButton = document.getElementById("start-new-game-button");
+    let cancelGameButton = document.getElementById("cancel-game-button");
 
     if (playLink) {
         playLink.addEventListener("click", toggleInstructionsAndGame);
@@ -45,7 +46,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (restartButton) {
         restartButton.addEventListener("click", startGame);
     }
+
+    if (startNewGameButton) {
+        startNewGameButton.addEventListener("click", startNewGame);
+    }
+
+    if (cancelGameButton) {
+        cancelGameButton.addEventListener("click", cancelGame);
+    }
 });
+
+function startNewGame() {
+    player1Score = 0;
+    player2Score = 0;
+    currentPlayer = 1;
+    questionsAnswered = 0;
+    roundsPlayed = 0;
+    winnerMessageElement.style.display = "none";
+    toggleInstructionsAndGame();
+}
+
 // Function to toggle instructions and game display
 let submitButton;
 function toggleInstructionsAndGame() {
@@ -95,8 +115,6 @@ function displayQuestion(questionIndex) {
     let inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
-
-    // Display the question
     // Display the question
     questionContainer.innerHTML = '';
     questionContainer.innerHTML += `
