@@ -1,3 +1,4 @@
+
 // Initialize variables
 let player1Score = 0;
 let player2Score = 0;
@@ -27,12 +28,15 @@ let questions = [
 ];
 
 // DOM elements
+let gameContainer = document.getElementById("game-container");
+let scoreElement = document.getElementById("score");
+let winnerMessageElement = document.getElementById("winner-message");
+
+// Event listeners
 
 document.addEventListener("DOMContentLoaded", function () {
-    const playLink = document.getElementById("play-link");
-    const restartButton = document.getElementById("restart-button");
-    const startNewGameButton = document.getElementById("start-new-game-button");
-    const cancelGameButton = document.getElementById("cancel-game-button");
+    let playLink = document.getElementById("play-link");
+    let restartButton = document.getElementById("restart-button");
 
     if (playLink) {
         playLink.addEventListener("click", toggleInstructionsAndGame);
@@ -41,37 +45,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (restartButton) {
         restartButton.addEventListener("click", startGame);
     }
-
-    if (startNewGameButton) {
-        startNewGameButton.addEventListener("click", startNewGame);
-    }
-
-    if (cancelGameButton) {
-        cancelGameButton.addEventListener("click", cancelGame);
-    }
 });
-
+// Function to toggle instructions and game display
+let submitButton;
 function toggleInstructionsAndGame() {
     const instructionsList = document.getElementById("instructions-list");
-    const gameContainer = document.getElementById("game-container");
+    const instructionsDisplayStyle = window.getComputedStyle(instructionsList).display;
 
-    if (instructionsList && gameContainer) {
-        const instructionsDisplayStyle = window.getComputedStyle(instructionsList).display;
-
-        if (instructionsDisplayStyle === "none") {
-            instructionsList.style.display = "block";
-            gameContainer.style.display = "none";
-        } else {
-            instructionsList.style.display = "none";
-            gameContainer.style.display = "block";
-            startGame();
-        }
+    if (instructionsDisplayStyle === "none") {
+        instructionsList.style.display = "block";
+        gameContainer.style.display = "none";
     } else {
-        console.error("Could not find instructionsList or gameContainer element.");
+        instructionsList.style.display = "none";
+        gameContainer.style.display = "block";
+        startGame();
     }
 }
-
-
 
 // Function to start the game
 function startGame() {
@@ -90,7 +79,7 @@ function startGame() {
 }
 
 function displayRandomQuestion() {
-
+    // Randomly select a question
     const randomIndex = Math.floor(Math.random() * questions.length);
     displayQuestion(randomIndex);
 }
@@ -101,13 +90,12 @@ let player1IncorrectAnswers = [];
 let player2CorrectAnswers = [];
 let player2IncorrectAnswers = [];
 
-
 function displayQuestion(questionIndex) {
-    let submitButton = document.createElement("button");
     let inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
 
+    // Display the question
     // Display the question
     questionContainer.innerHTML = '';
     questionContainer.innerHTML += `
@@ -182,15 +170,15 @@ function displayQuestion(questionIndex) {
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
-
+                // Disable the input and submit button during the delay
                 answerInput.disabled = true;
                 submitButton.disabled = true;
 
                 setTimeout(() => {
                     answerInput.disabled = false;
                     submitButton.disabled = false;
-                    answerInput.value = '';
-                    answerInput.focus();
+                    answerInput.value = ''; // Clear the input field
+                    answerInput.focus(); // Focus on the input field
                 }, 2000);
 
                 setTimeout(displayRandomQuestion, 2000);
@@ -204,6 +192,8 @@ function displayQuestion(questionIndex) {
 
     // Automatically focus on the input field after displaying the question
     answerInput.focus();
+
+    // Automatically submit the answer after the user finishes typing
     answerInput.addEventListener("blur", () => {
         if (inputChanged) {
             submitButton.click();
@@ -220,7 +210,7 @@ function endRound() {
         if (player1Score + player2Score < 4) {
             currentPlayer = currentPlayer === 1 ? 2 : 1;
             questionsAnswered = 0;
-            setTimeout(() => displayRandomQuestion(), 2000);
+            setTimeout(displayRandomQuestion, 2000);
         } else {
             setTimeout(calculateWinner, 2000);
         }
@@ -228,7 +218,6 @@ function endRound() {
         setTimeout(calculateWinner, 2000);
     }
 }
-
 // Function to start the timer
 function startTimer() {
     clearInterval(timer);
@@ -297,4 +286,6 @@ function startNewQuestion() {
 function updateScoreDisplay() {
     scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
 }
+
+
 
