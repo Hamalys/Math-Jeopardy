@@ -27,7 +27,6 @@ let questions = [
     { question: "Subtract 12 from 33.", answer: 21 },
 ];
 
-
 // DOM elements
 let gameContainer = document.getElementById("game-container");
 let scoreElement = document.getElementById("score");
@@ -72,7 +71,6 @@ function startGame() {
     roundsPlayed = 0;
     winnerMessageElement.style.display = "none";
 
-    // Check if there are questions before displaying the first one
     if (questions.length > 0) {
         displayQuestion(0);
     } else {
@@ -80,10 +78,11 @@ function startGame() {
     }
 }
 
-// Display a question
-let submitButton;
 
+let inputChanged = false;
+let submitButton;
 function displayQuestion(questionIndex) {
+    inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
     if (questionsAnswered > 3) {
@@ -117,31 +116,38 @@ function displayQuestion(questionIndex) {
         questionContainer.appendChild(submitButton);
 
         startTimer();
-
-        submitButton.addEventListener("click", () => {
-            const userAnswer = parseInt(answerInput.value);
-
-            if (!isNaN(userAnswer) && userAnswer === question.answer) {
-                answerElement.textContent = "Correct!";
-                answerElement.classList.add("correct-feedback");
-                if (currentPlayer === 1) {
-                    player1Score++;
-                } else {
-                    player2Score++;
-                }
-            } else {
-                answerElement.textContent = "Incorrect!";
-                answerElement.classList.add("incorrect-feedback");
-            }
-
-            questionsAnswered++;
-
-            if (questionsAnswered < questions.length) {
-                setTimeout(() => displayQuestion(questionsAnswered), 2000);
-            } else {
-                endRound();
-            }
+        answerInput.addEventListener("input", () => {
+            inputChanged = true;
         });
+        answerInput.addEventListener("change", () => {
+            if (inputChanged) {
+                const userAnswer = parseInt(answerInput.value);
+
+                if (!isNaN(userAnswer) && userAnswer === question.answer) {
+                    answerElement.textContent = "Correct!";
+                    answerElement.classList.add("correct-feedback");
+                    if (currentPlayer === 1) {
+                        player1Score++;
+                    } else {
+                        player2Score++;
+                    }
+                } else {
+                    answerElement.textContent = "Incorrect!";
+                    answerElement.classList.add("incorrect-feedback");
+                }
+
+                questionsAnswered++;
+
+                if (questionsAnswered < questions.length) {
+                    setTimeout(() => displayQuestion(questionsAnswered), 2000);
+                } else {
+                    endRound();
+                }
+            }
+
+            inputChanged = false;
+        });
+        submitButton.style.display = "none";
     }
 }
 
