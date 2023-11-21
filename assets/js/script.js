@@ -1,4 +1,3 @@
-
 // Initialize variables
 let player1Score = 0;
 let player2Score = 0;
@@ -90,15 +89,15 @@ let player1IncorrectAnswers = [];
 let player2CorrectAnswers = [];
 let player2IncorrectAnswers = [];
 
-    function displayQuestion(questionIndex) {
-        let inputChanged = false;
-        let questionContainer = gameContainer;
-        let question = questions[questionIndex];
+function displayQuestion(questionIndex) {
+    let inputChanged = false;
+    let questionContainer = gameContainer;
+    let question = questions[questionIndex];
 
-        // Display the question
-
-        questionContainer.innerHTML = '';
-        questionContainer.innerHTML += `
+    // Display the question
+    // Display the question
+    questionContainer.innerHTML = '';
+    questionContainer.innerHTML += `
         <h2>Arithmetic Questions</h2>
         <ul>
             <li>
@@ -108,18 +107,18 @@ let player2IncorrectAnswers = [];
         <div id="timer">Time Left: 10 seconds</div>
     `;
 
-        // Display the scores and answered questions for each player
-        const scoreDisplay = document.createElement("p");
-        scoreDisplay.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
-        questionContainer.appendChild(scoreDisplay);
+    // Display the scores and answered questions for each player
+    const scoreDisplay = document.createElement("p");
+    scoreDisplay.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
+    questionContainer.appendChild(scoreDisplay);
 
-        const player1AnswersDisplay = document.createElement("p");
-        player1AnswersDisplay.textContent = `Player 1: Correct (${player1CorrectAnswers.length}), Incorrect (${player1IncorrectAnswers.length})`;
-        questionContainer.appendChild(player1AnswersDisplay);
+    const player1AnswersDisplay = document.createElement("p");
+    player1AnswersDisplay.textContent = `Player 1: Correct (${player1CorrectAnswers.length}), Incorrect (${player1IncorrectAnswers.length})`;
+    questionContainer.appendChild(player1AnswersDisplay);
 
-        const player2AnswersDisplay = document.createElement("p");
-        player2AnswersDisplay.textContent = `Player 2: Correct (${player2CorrectAnswers.length}), Incorrect (${player2IncorrectAnswers.length})`;
-        questionContainer.appendChild(player2AnswersDisplay);
+    const player2AnswersDisplay = document.createElement("p");
+    player2AnswersDisplay.textContent = `Player 2: Correct (${player2CorrectAnswers.length}), Incorrect (${player2IncorrectAnswers.length})`;
+    questionContainer.appendChild(player2AnswersDisplay);
 
     // correct/incorrect answers
     const answerElement = document.createElement("div");
@@ -138,76 +137,60 @@ let player2IncorrectAnswers = [];
 
     answerInput.disabled = false;
     submitButton.disabled = false;
-        // Event listeners for answer input and submit button
-        answerInput.addEventListener("input", () => {
-            inputChanged = true;
-        });
 
-        answerInput.addEventListener("change", () => {
-            if (inputChanged) {
-                handleAnswerSubmission();
-            }
-            inputChanged = false;
-        });
+    answerInput.addEventListener("input", () => {
+        inputChanged = true;
+    });
 
-        // Function to handle answer submission
-        function handleAnswerSubmission() {
+    answerInput.addEventListener("change", () => {
+        if (inputChanged) {
             const userAnswer = parseInt(answerInput.value);
 
-            if (!isNaN(userAnswer)) {
-                if (userAnswer === questions[questionsAnswered].answer) {
-                    handleCorrectAnswer();
+            if (!isNaN(userAnswer) && userAnswer === question.answer) {
+                answerElement.textContent = "Correct!";
+                answerElement.classList.add("correct-feedback");
+                if (currentPlayer === 1) {
+                    player1Score++;
+                    player1CorrectAnswers.push(questionIndex);
                 } else {
-                    handleIncorrectAnswer();
+                    player2Score++;
+                    player2CorrectAnswers.push(questionIndex);
+                }
+            } else {
+                answerElement.textContent = "Incorrect!";
+                answerElement.classList.add("incorrect-feedback");
+                if (currentPlayer === 1) {
+                    player1IncorrectAnswers.push(questionIndex);
+                } else {
+                    player2IncorrectAnswers.push(questionIndex);
                 }
             }
 
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
-                disableInputForDelay();
+                // Disable the input and submit button during the delay
+                answerInput.disabled = true;
+                submitButton.disabled = true;
+
+                setTimeout(() => {
+                    answerInput.disabled = false;
+                    submitButton.disabled = false;
+                    answerInput.value = ''; // Clear the input field
+                    answerInput.focus(); // Focus on the input field
+                }, 2000);
+
                 setTimeout(displayRandomQuestion, 2000);
             } else {
                 endRound();
             }
         }
 
-        // Function to handle correct answer
-        function handleCorrectAnswer() {
-            answerElement.textContent = "Correct!";
-            answerElement.classList.add("correct-feedback");
-            if (currentPlayer === 1) {
-                player1Score++;
-                player1CorrectAnswers.push(questionsAnswered - 1);
-            } else {
-                player2Score++;
-                player2CorrectAnswers.push(questionsAnswered - 1);
-            }
-        }
+        inputChanged = false;
+    });
 
-        // Function to handle incorrect answer
-        function handleIncorrectAnswer() {
-            answerElement.textContent = "Incorrect!";
-            answerElement.classList.add("incorrect-feedback");
-            if (currentPlayer === 1) {
-                player1IncorrectAnswers.push(questionsAnswered - 1);
-            } else {
-                player2IncorrectAnswers.push(questionsAnswered - 1);
-            }
-        }
-
-        // Function to disable input for a short delay
-        function disableInputForDelay() {
-            answerInput.disabled = true;
-            submitButton.disabled = true;
-
-            setTimeout(() => {
-                answerInput.disabled = false;
-                submitButton.disabled = false;
-                answerInput.value = '';
-                answerInput.focus();
-            }, 2000);
-        }
+    // Automatically focus on the input field after displaying the question
+    answerInput.focus();
 
     // Automatically submit the answer after the user finishes typing
     answerInput.addEventListener("blur", () => {
@@ -222,17 +205,45 @@ let player2IncorrectAnswers = [];
 // Function to end a round
 function endRound() {
     roundsPlayed++;
-    if (roundsPlayed < 3 && questionsAnswered === questions.length) {
-        clearInterval(timer);
-        setTimeout(calculateWinner, 2000);
-    } else if (roundsPlayed < 3) {
-        currentPlayer = currentPlayer === 1 ? 2 : 1;
-        questionsAnswered = 0;
-        setTimeout(displayRandomQuestion, 2000);
+    if (roundsPlayed < 3) {
+        if (player1Score + player2Score < 4) {
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            questionsAnswered = 0;
+            setTimeout(displayRandomQuestion, 2000);
+        } else {
+            setTimeout(calculateWinner, 2000);
+        }
     } else {
-        clearInterval(timer);
         setTimeout(calculateWinner, 2000);
     }
+}
+// Function to start the timer
+function startTimer() {
+    clearInterval(timer);
+    let timeLeft = 10;
+
+    function updateTimerDisplay() {
+        document.getElementById("timer").textContent = `Time Left: ${timeLeft} seconds`;
+    }
+
+    updateTimerDisplay();
+
+    timer = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft === 0) {
+            clearInterval(timer);
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            questionsAnswered++;
+
+            if (questionsAnswered < questions.length) {
+                setTimeout(() => displayQuestion(questionsAnswered), 2000);
+            } else {
+                setTimeout(calculateWinner, 2000);
+            }
+        }
+    }, 1000);
 }
 
 // Function to calculate the winner
@@ -240,27 +251,27 @@ function calculateWinner() {
     let winnerMessage = "";
 
     if (player1Score > player2Score) {
-        winnerMessage = "Player 1 wins! Congratulations on Your Victory!";
+        winnerMessage = "Player 1 wins!";
     } else if (player2Score > player1Score) {
-        winnerMessage = "Player 2 wins! Congratulations on Your Victory!";
+        winnerMessage = "Player 2 wins!";
     } else {
         winnerMessage = "It's a tie!";
     }
 
+    // Display the winner message first
     winnerMessageElement.textContent = winnerMessage;
     winnerMessageElement.style.display = "block";
-
-    // Reset scores and rounds for a new game
-    player1Score = 0;
-    player2Score = 0;
-    roundsPlayed = 0;
 
     setTimeout(() => {
         updateScoreDisplay();
         setTimeout(() => {
-            startGame();
+            restartGame();
         }, 3000);
     }, 2000);
+}
+
+function updateScoreDisplay() {
+    scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
 }
 
 // Function to start a new question
@@ -274,6 +285,3 @@ function startNewQuestion() {
 function updateScoreDisplay() {
     scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
 }
-
-
-
