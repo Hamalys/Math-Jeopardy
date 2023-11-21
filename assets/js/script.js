@@ -182,15 +182,15 @@ function displayQuestion(questionIndex) {
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
-                
+
                 answerInput.disabled = true;
                 submitButton.disabled = true;
 
                 setTimeout(() => {
                     answerInput.disabled = false;
                     submitButton.disabled = false;
-                    answerInput.value = ''; 
-                    answerInput.focus(); 
+                    answerInput.value = '';
+                    answerInput.focus();
                 }, 2000);
 
                 setTimeout(displayRandomQuestion, 2000);
@@ -220,7 +220,7 @@ function endRound() {
         if (player1Score + player2Score < 4) {
             currentPlayer = currentPlayer === 1 ? 2 : 1;
             questionsAnswered = 0;
-            setTimeout(displayRandomQuestion, 2000);
+            setTimeout(() => displayRandomQuestion(), 2000);
         } else {
             setTimeout(calculateWinner, 2000);
         }
@@ -228,6 +228,10 @@ function endRound() {
         setTimeout(calculateWinner, 2000);
     }
 }
+
+
+
+
 // Function to start the timer
 function startTimer() {
     clearInterval(timer);
