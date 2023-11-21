@@ -90,7 +90,7 @@ let player1IncorrectAnswers = [];
 let player2CorrectAnswers = [];
 let player2IncorrectAnswers = [];
 
-function displayQuestion(questionIndex) {
+function displayQuestion(questionIndex) {{
     let inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
@@ -110,16 +110,35 @@ function displayQuestion(questionIndex) {
 
     // Display the scores and answered questions for each player
     const scoreDisplay = document.createElement("p");
-    scoreDisplay.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
-    questionContainer.appendChild(scoreDisplay);
+    if (roundsPlayed === 3) {
+    
+        player1Score += question.answer1 - question.answer2;
+        player2Score += question.answer2 - question.answer1;
+        scoreDisplay.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
+        winnerMessageElement.textContent = "Player " + currentPlayer + " wins! Congratulations on Your Victory!";
 
-    const player1AnswersDisplay = document.createElement("p");
-    player1AnswersDisplay.textContent = `Player 1: Correct (${player1CorrectAnswers.length}), Incorrect (${player1IncorrectAnswers.length})`;
-    questionContainer.appendChild(player1AnswersDisplay);
+        player1Score = 0;
+        player2Score = 0;
+        roundsPlayed = 0;
 
-    const player2AnswersDisplay = document.createElement("p");
-    player2AnswersDisplay.textContent = `Player 2: Correct (${player2CorrectAnswers.length}), Incorrect (${player2IncorrectAnswers.length})`;
-    questionContainer.appendChild(player2AnswersDisplay);
+        setTimeout(() => {
+            updateScoreDisplay();
+            setTimeout(() => {
+                startGame();
+            }, 3000);
+        }, 2000);
+
+    } else {
+    
+        scoreDisplay.textContent = `Player 1: Correct (${player1CorrectAnswers.length}), Incorrect (${player1IncorrectAnswers.length})`;
+        player2AnswersDisplay.textContent = `Player 2: Correct (${player2CorrectAnswers.length}), Incorrect (${player2IncorrectAnswers.length})`;
+
+    }
+}
+
+
+
+
 
     // correct/incorrect answers
     const answerElement = document.createElement("div");
@@ -170,7 +189,6 @@ function displayQuestion(questionIndex) {
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
-                // Disable the input and submit button during the delay
                 answerInput.disabled = true;
                 submitButton.disabled = true;
 
@@ -190,7 +208,6 @@ function displayQuestion(questionIndex) {
         inputChanged = false;
     });
 
-    // Automatically focus on the input field after displaying the question
     answerInput.focus();
 
     // Automatically submit the answer after the user finishes typing
@@ -212,11 +229,11 @@ function endRound() {
             questionsAnswered = 0;
             setTimeout(displayRandomQuestion, 2000);
         } else {
-            clearInterval(timer);  // Clear the timer here
+            clearInterval(timer);  
             setTimeout(calculateWinner, 2000);
         }
     } else {
-        clearInterval(timer);  // Clear the timer here
+        clearInterval(timer);  
         setTimeout(calculateWinner, 2000);
     }
 }
@@ -273,7 +290,7 @@ function calculateWinner() {
     setTimeout(() => {
         updateScoreDisplay();
         setTimeout(() => {
-            startGame(); // Restart the game
+            startGame(); 
         }, 3000);
     }, 2000);
 }
