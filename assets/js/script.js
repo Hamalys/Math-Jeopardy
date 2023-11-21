@@ -27,9 +27,6 @@ let questions = [
 ];
 
 // DOM elements
-let gameContainer = document.getElementById("game-container");
-let scoreElement = document.getElementById("score");
-let winnerMessageElement = document.getElementById("winner-message");
 
 document.addEventListener("DOMContentLoaded", function () {
     const playLink = document.getElementById("play-link");
@@ -74,6 +71,8 @@ function toggleInstructionsAndGame() {
     }
 }
 
+
+
 // Function to start the game
 function startGame() {
     player1Score = 0;
@@ -108,6 +107,7 @@ function displayQuestion(questionIndex) {
     let inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
+
     // Display the question
     questionContainer.innerHTML = '';
     questionContainer.innerHTML += `
@@ -228,9 +228,6 @@ function endRound() {
         setTimeout(calculateWinner, 2000);
     }
 }
-
-
-
 
 // Function to start the timer
 function startTimer() {
