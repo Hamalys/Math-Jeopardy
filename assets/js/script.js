@@ -96,7 +96,7 @@ function displayQuestion(questionIndex) {
     let question = questions[questionIndex];
 
     // Display the question
-    // Display the question
+
     questionContainer.innerHTML = '';
     questionContainer.innerHTML += `
         <h2>Arithmetic Questions</h2>
@@ -177,8 +177,8 @@ function displayQuestion(questionIndex) {
                 setTimeout(() => {
                     answerInput.disabled = false;
                     submitButton.disabled = false;
-                    answerInput.value = ''; // Clear the input field
-                    answerInput.focus(); // Focus on the input field
+                    answerInput.value = '';
+                    answerInput.focus();
                 }, 2000);
 
                 setTimeout(displayRandomQuestion, 2000);
@@ -265,14 +265,18 @@ function calculateWinner() {
     winnerMessageElement.textContent = winnerMessage;
     winnerMessageElement.style.display = "block";
 
+    // Reset scores and rounds for a new game
+    player1Score = 0;
+    player2Score = 0;
+    roundsPlayed = 0;
+
     setTimeout(() => {
         updateScoreDisplay();
         setTimeout(() => {
-            restartGame();
+            startGame(); // Restart the game
         }, 3000);
     }, 2000);
 }
-
 
 // Function to start a new question
 function startNewQuestion() {
