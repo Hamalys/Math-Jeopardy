@@ -46,8 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
         restartButton.addEventListener("click", startGame);
     }
 });
-
-
 // Function to toggle instructions and game display
 let submitButton;
 function toggleInstructionsAndGame() {
@@ -86,8 +84,14 @@ function displayRandomQuestion() {
     displayQuestion(randomIndex);
 }
 
+// Initialize arrays to track correct and incorrect answers for each player
+let player1CorrectAnswers = [];
+let player1IncorrectAnswers = [];
+let player2CorrectAnswers = [];
+let player2IncorrectAnswers = [];
+
 function displayQuestion(questionIndex) {
-    inputChanged = false;
+    let inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
 
@@ -102,10 +106,19 @@ function displayQuestion(questionIndex) {
         </ul>
         <div id="timer">Time Left: 10 seconds</div>
     `;
-    // Display the scores below the question
+
+    // Display the scores and answered questions for each player
     const scoreDisplay = document.createElement("p");
     scoreDisplay.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
     questionContainer.appendChild(scoreDisplay);
+
+    const player1AnswersDisplay = document.createElement("p");
+    player1AnswersDisplay.textContent = `Player 1: Correct (${player1CorrectAnswers.length}), Incorrect (${player1IncorrectAnswers.length})`;
+    questionContainer.appendChild(player1AnswersDisplay);
+
+    const player2AnswersDisplay = document.createElement("p");
+    player2AnswersDisplay.textContent = `Player 2: Correct (${player2CorrectAnswers.length}), Incorrect (${player2IncorrectAnswers.length})`;
+    questionContainer.appendChild(player2AnswersDisplay);
 
     // correct/incorrect answers
     const answerElement = document.createElement("div");
@@ -122,6 +135,10 @@ function displayQuestion(questionIndex) {
 
     startTimer();
 
+    // Disable the input and submit button during the timer countdown
+    answerInput.disabled = true;
+    submitButton.disabled = true;
+
     answerInput.addEventListener("input", () => {
         inputChanged = true;
     });
@@ -135,18 +152,29 @@ function displayQuestion(questionIndex) {
                 answerElement.classList.add("correct-feedback");
                 if (currentPlayer === 1) {
                     player1Score++;
+                    player1CorrectAnswers.push(questionIndex);
                 } else {
                     player2Score++;
+                    player2CorrectAnswers.push(questionIndex);
                 }
             } else {
                 answerElement.textContent = "Incorrect!";
                 answerElement.classList.add("incorrect-feedback");
+                if (currentPlayer === 1) {
+                    player1IncorrectAnswers.push(questionIndex);
+                } else {
+                    player2IncorrectAnswers.push(questionIndex);
+                }
             }
 
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
 
+                setTimeout(() => {
+                    answerInput.disabled = false;
+                    submitButton.disabled = false;
+                }, 2000);
                 setTimeout(displayRandomQuestion, 2000);
             } else {
                 endRound();
