@@ -90,6 +90,7 @@ let player1IncorrectAnswers = [];
 let player2CorrectAnswers = [];
 let player2IncorrectAnswers = [];
 
+
 function displayQuestion(questionIndex) {
     let inputChanged = false;
     let questionContainer = gameContainer;
@@ -135,9 +136,8 @@ function displayQuestion(questionIndex) {
 
     startTimer();
 
-    // Disable the input and submit button during the timer countdown
-    answerInput.disabled = true;
-    submitButton.disabled = true;
+    answerInput.disabled = false;
+    submitButton.disabled = false;
 
     answerInput.addEventListener("input", () => {
         inputChanged = true;
@@ -170,11 +170,15 @@ function displayQuestion(questionIndex) {
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
+                // Disable the input and submit button during the delay
+                answerInput.disabled = true;
+                submitButton.disabled = true;
 
                 setTimeout(() => {
                     answerInput.disabled = false;
                     submitButton.disabled = false;
                 }, 2000);
+
                 setTimeout(displayRandomQuestion, 2000);
             } else {
                 endRound();
