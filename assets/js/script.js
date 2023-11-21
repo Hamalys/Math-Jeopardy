@@ -47,6 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+
+
+
+
+let submitButton;
+
 // Function to toggle instructions and game display
 function toggleInstructionsAndGame() {
     const instructionsList = document.getElementById("instructions-list");
@@ -72,27 +78,26 @@ function startGame() {
     winnerMessageElement.style.display = "none";
 
     if (questions.length > 0) {
-        displayQuestion(0);
+        displayRandomQuestion();
     } else {
         console.error("No questions available. Please add questions to the 'questions' array.");
     }
 }
 
+function displayRandomQuestion() {
+    // Randomly select a question
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    displayQuestion(randomIndex);
+}
 
-let inputChanged = false;
-let submitButton;
 function displayQuestion(questionIndex) {
     inputChanged = false;
     let questionContainer = gameContainer;
     let question = questions[questionIndex];
-    if (questionsAnswered > 3) {
-        endgame();
-    } else {
-        questionsAnswered++;
 
-        questionContainer.innerHTML = '';
-
-        questionContainer.innerHTML += `
+    // Display the question
+    questionContainer.innerHTML = '';
+    questionContainer.innerHTML += `
         <h2>Arithmetic Questions</h2>
         <ul>
             <li>
@@ -102,53 +107,55 @@ function displayQuestion(questionIndex) {
         <div id="timer">Time Left: 10 seconds</div>
     `;
 
-        // correct/incorrect answers
-        const answerElement = document.createElement("div");
-        answerElement.id = "answer-feedback";
-        questionContainer.appendChild(answerElement);
+    // correct/incorrect answers
+    const answerElement = document.createElement("div");
+    answerElement.id = "answer-feedback";
+    questionContainer.appendChild(answerElement);
 
-        const answerInput = document.createElement("input");
-        answerInput.type = "text";
-        questionContainer.appendChild(answerInput);
+    const answerInput = document.createElement("input");
+    answerInput.type = "text";
+    questionContainer.appendChild(answerInput);
 
-        submitButton = document.createElement("button");
-        submitButton.textContent = "Submit Answer";
-        questionContainer.appendChild(submitButton);
+    submitButton = document.createElement("button");
+    submitButton.textContent = "Submit Answer";
+    questionContainer.appendChild(submitButton);
 
-        startTimer();
-        answerInput.addEventListener("input", () => {
-            inputChanged = true;
-        });
-        answerInput.addEventListener("change", () => {
-            if (inputChanged) {
-                const userAnswer = parseInt(answerInput.value);
+    startTimer();
 
-                if (!isNaN(userAnswer) && userAnswer === question.answer) {
-                    answerElement.textContent = "Correct!";
-                    answerElement.classList.add("correct-feedback");
-                    if (currentPlayer === 1) {
-                        player1Score++;
-                    } else {
-                        player2Score++;
-                    }
+    answerInput.addEventListener("input", () => {
+        inputChanged = true;
+    });
+
+    answerInput.addEventListener("change", () => {
+        if (inputChanged) {
+            const userAnswer = parseInt(answerInput.value);
+
+            if (!isNaN(userAnswer) && userAnswer === question.answer) {
+                answerElement.textContent = "Correct!";
+                answerElement.classList.add("correct-feedback");
+                if (currentPlayer === 1) {
+                    player1Score++;
                 } else {
-                    answerElement.textContent = "Incorrect!";
-                    answerElement.classList.add("incorrect-feedback");
+                    player2Score++;
                 }
-
-                questionsAnswered++;
-
-                if (questionsAnswered < questions.length) {
-                    setTimeout(() => displayQuestion(questionsAnswered), 2000);
-                } else {
-                    endRound();
-                }
+            } else {
+                answerElement.textContent = "Incorrect!";
+                answerElement.classList.add("incorrect-feedback");
             }
 
-            inputChanged = false;
-        });
-        submitButton.style.display = "none";
-    }
+            questionsAnswered++;
+
+            if (questionsAnswered < questions.length) {
+                // Display the next random question after a delay
+                setTimeout(displayRandomQuestion, 2000);
+            } else {
+                endRound();
+            }
+        }
+
+        inputChanged = false;
+    });
+    submitButton.style.display = "block";
 }
 
 // Function to end a round
