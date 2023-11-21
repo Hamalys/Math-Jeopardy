@@ -102,6 +102,10 @@ function displayQuestion(questionIndex) {
         </ul>
         <div id="timer">Time Left: 10 seconds</div>
     `;
+    // Display the scores below the question
+    const scoreDisplay = document.createElement("p");
+    scoreDisplay.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
+    questionContainer.appendChild(scoreDisplay);
 
     // correct/incorrect answers
     const answerElement = document.createElement("div");
@@ -225,9 +229,6 @@ function calculateWinner() {
 function updateScoreDisplay() {
     scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
 }
-
-
-
 
 // Function to start a new question
 function startNewQuestion() {
