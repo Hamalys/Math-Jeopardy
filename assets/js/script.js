@@ -97,6 +97,7 @@ function displayQuestion(questionIndex) {
     let question = questions[questionIndex];
 
     // Display the question
+    // Display the question
     questionContainer.innerHTML = '';
     questionContainer.innerHTML += `
         <h2>Arithmetic Questions</h2>
@@ -177,6 +178,8 @@ function displayQuestion(questionIndex) {
                 setTimeout(() => {
                     answerInput.disabled = false;
                     submitButton.disabled = false;
+                    answerInput.value = ''; // Clear the input field
+                    answerInput.focus(); // Focus on the input field
                 }, 2000);
 
                 setTimeout(displayRandomQuestion, 2000);
@@ -187,6 +190,17 @@ function displayQuestion(questionIndex) {
 
         inputChanged = false;
     });
+
+    // Automatically focus on the input field after displaying the question
+    answerInput.focus();
+
+    // Automatically submit the answer after the user finishes typing
+    answerInput.addEventListener("blur", () => {
+        if (inputChanged) {
+            submitButton.click();
+        }
+    });
+
     submitButton.style.display = "block";
 }
 
