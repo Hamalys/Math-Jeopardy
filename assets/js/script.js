@@ -149,14 +149,17 @@ function displayQuestion(questionIndex) {
 function endRound() {
     roundsPlayed++;
     if (roundsPlayed < 3) {
-        currentPlayer = currentPlayer === 1 ? 2 : 1;
-        questionsAnswered = 0;
-        setTimeout(() => displayQuestion(0), 2000);
+        if (player1Score + player2Score < 4) {
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            questionsAnswered = 0;
+            setTimeout(() => displayQuestion(0), 2000);
+        } else {
+            setTimeout(calculateWinner, 2000);
+        }
     } else {
         setTimeout(calculateWinner, 2000);
     }
 }
-
 // Function to start the timer
 function startTimer() {
     clearInterval(timer);
