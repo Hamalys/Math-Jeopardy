@@ -138,58 +138,76 @@ let player2IncorrectAnswers = [];
 
     answerInput.disabled = false;
     submitButton.disabled = false;
+        // Event listeners for answer input and submit button
+        answerInput.addEventListener("input", () => {
+            inputChanged = true;
+        });
 
-    answerInput.addEventListener("input", () => {
-        inputChanged = true;
-    });
+        answerInput.addEventListener("change", () => {
+            if (inputChanged) {
+                handleAnswerSubmission();
+            }
+            inputChanged = false;
+        });
 
-    answerInput.addEventListener("change", () => {
-        if (inputChanged) {
+        // Function to handle answer submission
+        function handleAnswerSubmission() {
             const userAnswer = parseInt(answerInput.value);
 
-            if (!isNaN(userAnswer) && userAnswer === question.answer) {
-                answerElement.textContent = "Correct!";
-                answerElement.classList.add("correct-feedback");
-                if (currentPlayer === 1) {
-                    player1Score++;
-                    player1CorrectAnswers.push(questionIndex);
+            if (!isNaN(userAnswer)) {
+                if (userAnswer === questions[questionsAnswered].answer) {
+                    handleCorrectAnswer();
                 } else {
-                    player2Score++;
-                    player2CorrectAnswers.push(questionIndex);
-                }
-            } else {
-                answerElement.textContent = "Incorrect!";
-                answerElement.classList.add("incorrect-feedback");
-                if (currentPlayer === 1) {
-                    player1IncorrectAnswers.push(questionIndex);
-                } else {
-                    player2IncorrectAnswers.push(questionIndex);
+                    handleIncorrectAnswer();
                 }
             }
 
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
-                answerInput.disabled = true;
-                submitButton.disabled = true;
-
-                setTimeout(() => {
-                    answerInput.disabled = false;
-                    submitButton.disabled = false;
-                    answerInput.value = '';
-                    answerInput.focus();
-                }, 2000);
-
+                disableInputForDelay();
                 setTimeout(displayRandomQuestion, 2000);
             } else {
                 endRound();
             }
         }
 
-        inputChanged = false;
-    });
+        // Function to handle correct answer
+        function handleCorrectAnswer() {
+            answerElement.textContent = "Correct!";
+            answerElement.classList.add("correct-feedback");
+            if (currentPlayer === 1) {
+                player1Score++;
+                player1CorrectAnswers.push(questionsAnswered - 1);
+            } else {
+                player2Score++;
+                player2CorrectAnswers.push(questionsAnswered - 1);
+            }
+        }
 
-    answerInput.focus();
+        // Function to handle incorrect answer
+        function handleIncorrectAnswer() {
+            answerElement.textContent = "Incorrect!";
+            answerElement.classList.add("incorrect-feedback");
+            if (currentPlayer === 1) {
+                player1IncorrectAnswers.push(questionsAnswered - 1);
+            } else {
+                player2IncorrectAnswers.push(questionsAnswered - 1);
+            }
+        }
+
+        // Function to disable input for a short delay
+        function disableInputForDelay() {
+            answerInput.disabled = true;
+            submitButton.disabled = true;
+
+            setTimeout(() => {
+                answerInput.disabled = false;
+                submitButton.disabled = false;
+                answerInput.value = '';
+                answerInput.focus();
+            }, 2000);
+        }
 
     // Automatically submit the answer after the user finishes typing
     answerInput.addEventListener("blur", () => {
