@@ -250,19 +250,18 @@ function startTimer() {
     }, 1000);
 }
 
-// Function to calculate the winner
 function calculateWinner() {
     let winnerMessage = "";
 
     if (player1Score > player2Score) {
-        winnerMessage = "Player 1 wins!";
+        winnerMessage = "Player 1 wins! Congratulations on Your Victory!";
     } else if (player2Score > player1Score) {
-        winnerMessage = "Player 2 wins!";
+        winnerMessage = "Player 2 wins! Congratulations on Your Victory!";
     } else {
         winnerMessage = "It's a tie!";
     }
 
-    // Display the winner message first
+    // Display the winner message
     winnerMessageElement.textContent = winnerMessage;
     winnerMessageElement.style.display = "block";
 
@@ -274,9 +273,6 @@ function calculateWinner() {
     }, 2000);
 }
 
-function updateScoreDisplay() {
-    scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
-}
 
 // Function to start a new question
 function startNewQuestion() {
