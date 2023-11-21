@@ -204,50 +204,20 @@ let player2IncorrectAnswers = [];
 // Function to end a round
 function endRound() {
     roundsPlayed++;
-    if (roundsPlayed < 3) {
-        if (player1Score + player2Score < 4) {
-            currentPlayer = currentPlayer === 1 ? 2 : 1;
-            questionsAnswered = 0;
-            setTimeout(displayRandomQuestion, 2000);
-        } else {
-            clearInterval(timer);  
-            setTimeout(calculateWinner, 2000);
-        }
+    if (roundsPlayed < 3 && questionsAnswered === questions.length) {
+        clearInterval(timer);
+        setTimeout(calculateWinner, 2000);
+    } else if (roundsPlayed < 3) {
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        questionsAnswered = 0;
+        setTimeout(displayRandomQuestion, 2000);
     } else {
-        clearInterval(timer);  
+        clearInterval(timer);
         setTimeout(calculateWinner, 2000);
     }
 }
 
-// Function to start the timer
-function startTimer() {
-    clearInterval(timer);
-    let timeLeft = 10;
-
-    function updateTimerDisplay() {
-        document.getElementById("timer").textContent = `Time Left: ${timeLeft} seconds`;
-    }
-
-    updateTimerDisplay();
-
-    timer = setInterval(() => {
-        timeLeft--;
-        updateTimerDisplay();
-
-        if (timeLeft === 0) {
-            clearInterval(timer);
-            currentPlayer = currentPlayer === 1 ? 2 : 1;
-            questionsAnswered++;
-
-            if (questionsAnswered < questions.length) {
-                setTimeout(() => displayQuestion(questionsAnswered), 2000);
-            } else {
-                setTimeout(calculateWinner, 2000);
-            }
-        }
-    }, 1000);
-}
-
+// Function to calculate the winner
 function calculateWinner() {
     let winnerMessage = "";
 
@@ -259,7 +229,6 @@ function calculateWinner() {
         winnerMessage = "It's a tie!";
     }
 
-    // Display the winner message
     winnerMessageElement.textContent = winnerMessage;
     winnerMessageElement.style.display = "block";
 
@@ -271,7 +240,7 @@ function calculateWinner() {
     setTimeout(() => {
         updateScoreDisplay();
         setTimeout(() => {
-            startGame(); 
+            startGame();
         }, 3000);
     }, 2000);
 }
