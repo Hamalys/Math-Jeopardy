@@ -48,12 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-
-
-let submitButton;
-
 // Function to toggle instructions and game display
+let submitButton;
 function toggleInstructionsAndGame() {
     const instructionsList = document.getElementById("instructions-list");
     const instructionsDisplayStyle = window.getComputedStyle(instructionsList).display;
@@ -146,7 +142,7 @@ function displayQuestion(questionIndex) {
             questionsAnswered++;
 
             if (questionsAnswered < questions.length) {
-                // Display the next random question after a delay
+
                 setTimeout(displayRandomQuestion, 2000);
             } else {
                 endRound();
@@ -201,6 +197,7 @@ function startTimer() {
         }
     }, 1000);
 }
+
 // Function to calculate the winner
 function calculateWinner() {
     let winnerMessage = "";
@@ -213,12 +210,24 @@ function calculateWinner() {
         winnerMessage = "It's a tie!";
     }
 
+    // Display the winner message first
     winnerMessageElement.textContent = winnerMessage;
     winnerMessageElement.style.display = "block";
+
     setTimeout(() => {
-        restartGame();
-    }, 3000);
+        updateScoreDisplay();
+        setTimeout(() => {
+            restartGame();
+        }, 3000);
+    }, 2000);
 }
+
+function updateScoreDisplay() {
+    scoreElement.textContent = `Player 1: ${player1Score} | Player 2: ${player2Score}`;
+}
+
+
+
 
 // Function to start a new question
 function startNewQuestion() {
